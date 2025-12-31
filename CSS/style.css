@@ -230,7 +230,7 @@ nav {
 
 .btn-secondary {
     background: transparent;
-    color: var(--light-teal);
+    color: var(--teal);
     border: 2px solid var(--teal);
 }
 
