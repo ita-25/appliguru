@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Registration - Appliguru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Appliguru Logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Plans & Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+  <section class="Specialhero">
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <h2>Get Started Today</h2>
+            <p><strong>Complete the registration form below to begin your job search journey with Appliguru</strong></p>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info-section">
+        <div class="contact-cards">
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email Us</h3>
+                <p><a href="mailto:appliguru@gmail.com">appliguru@gmail.com</a></p>
+            </div>
+            <div class="contact-card">
+                <i class="fab fa-whatsapp"></i>
+                <h3>WhatsApp</h3>
+                <p><a href="https://wa.me/2348130654576">08130654576</a></p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h3>Call Us</h3>
+                <p><a href="tel:+2348130654576">08130654576</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section class="registration-section">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Registration Form</h2>
+                <p>Please fill out all required fields so we can provide you with the best job matching and application services.</p>
+            </div>
+
+            <!-- Success Message (Hidden by default) -->
+            <div id="successMessage" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <h3>Thank You for Registering!</h3>
+                <p>Your application has been successfully submitted. Our team will review your information and contact you shortly via email or phone.</p>
+                <p>We typically respond within 24 hours.</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" action="https://formspree.io/f/xwpgdrge" method="POST" class="registration-form">
+                
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp Number</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="If different from phone">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan Selection -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-box"></i> Select Your Plan</h3>
+                    
+                    <div class="form-group">
+                        <label for="plan">Preferred Plan <span class="required">*</span></label>
+                        <select id="plan" name="plan" required>
+                            <option value="">-- Select a Plan --</option>
+                            <option value="Basic">Basic - 3 applications/week (6 monthly)</option>
+                            <option value="Standard">Standard - 4 applications/week (12 monthly) - Most Popular</option>
+                            <option value="Premium">Premium - Unlimited applications</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Add-on Services (Optional)</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="addons" value="LinkedIn Optimization - ₦10,000">
+                                LinkedIn Optimization (₦10,000)
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="addons" value="CV Writing - ₦7,000">
+                                Professional CV Writing (₦7,000)
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="addons" value="LinkedIn + CV Bundle - ₦15,000">
+                                LinkedIn + CV Bundle (₦15,000 - Save ₦2,000!)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Preferences -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-briefcase"></i> Job Preferences</h3>
+                    
+                    <div class="form-group">
+                        <label for="jobTitles">Desired Job Titles <span class="required">*</span></label>
+                        <textarea id="jobTitles" name="jobTitles" rows="3" required placeholder="e.g., Marketing Manager, Digital Marketing Specialist, Brand Manager"></textarea>
+                        <small>Enter multiple job titles separated by commas</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="industries">Preferred Industries <span class="required">*</span></label>
+                        <textarea id="industries" name="industries" rows="3" required placeholder="e.g., Technology, Finance, Healthcare, E-commerce"></textarea>
+                        <small>Enter multiple industries separated by commas</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="experienceLevel">Experience Level <span class="required">*</span></label>
+                            <select id="experienceLevel" name="experienceLevel" required>
+                                <option value="">-- Select Level --</option>
+                                <option value="Entry Level">Entry Level (0-2 years)</option>
+                                <option value="Mid Level">Mid Level (3-5 years)</option>
+                                <option value="Senior Level">Senior Level (6-10 years)</option>
+                                <option value="Executive">Executive (10+ years)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="educationLevel">Education Level <span class="required">*</span></label>
+                            <select id="educationLevel" name="educationLevel" required>
+                                <option value="">-- Select Level --</option>
+                                <option value="High School">High School Diploma</option>
+                                <option value="Associate">Associate Degree</option>
+                                <option value="Bachelor">Bachelor's Degree</option>
+                                <option value="Master">Master's Degree</option>
+                                <option value="PhD">PhD/Doctorate</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employment Type & Location -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-map-marker-alt"></i> Employment Type & Location</h3>
+                    
+                    <div class="form-group">
+                        <label>Employment Type <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="employmentType" value="Full-time" required>
+                                Full-time
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="employmentType" value="Part-time">
+                                Part-time
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="employmentType" value="Contract">
+                                Contract
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="employmentType" value="Remote">
+                                Remote
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="employmentType" value="Hybrid">
+                                Hybrid
+                            </label>
+                        </div>
+                        <small>Select all that apply (at least one required)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="locations">Preferred Job Locations <span class="required">*</span></label>
+                        <textarea id="locations" name="locations" rows="3" required placeholder="e.g., Lagos, Abuja, Remote, Port Harcourt"></textarea>
+                        <small>Enter multiple cities/regions separated by commas</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="willingToRelocate">Willing to Relocate? <span class="required">*</span></label>
+                            <select id="willingToRelocate" name="willingToRelocate" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Depends">Depends on the opportunity</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="remoteWork">Remote Work Preference</label>
+                            <select id="remoteWork" name="remoteWork">
+                                <option value="">-- Select --</option>
+                                <option value="Remote Only">Remote Only</option>
+                                <option value="Prefer Remote">Prefer Remote but flexible</option>
+                                <option value="Hybrid">Hybrid (Mix of office/remote)</option>
+                                <option value="Office Only">Office Only</option>
+                                <option value="No Preference">No Preference</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salary & Benefits -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-money-bill-wave"></i> Salary & Benefits</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="salaryMin">Minimum Expected Salary (₦) <span class="required">*</span></label>
+                            <input type="number" id="salaryMin" name="salaryMin" required placeholder="e.g., 150000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="salaryMax">Maximum Expected Salary (₦)</label>
+                            <input type="number" id="salaryMax" name="salaryMax" placeholder="e.g., 300000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="benefits">Must-Have Benefits/Perks</label>
+                        <textarea id="benefits" name="benefits" rows="3" placeholder="e.g., Health insurance, Flexible hours, Professional development, Remote work"></textarea>
+                    </div>
+                </div>
+
+                <!-- Skills & Experience -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-star"></i> Skills & Experience</h3>
+                    
+                    <div class="form-group">
+                        <label for="keySkills">Key Skills <span class="required">*</span></label>
+                        <textarea id="keySkills" name="keySkills" rows="4" required placeholder="e.g., Project Management, Data Analysis, Python, Adobe Creative Suite, SEO, Team Leadership"></textarea>
+                        <small>List your top skills separated by commas</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="certifications">Certifications & Licenses</label>
+                        <textarea id="certifications" name="certifications" rows="3" placeholder="e.g., PMP, CPA, Google Analytics Certified, AWS Solutions Architect"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="yearsExperience">Total Years of Experience <span class="required">*</span></label>
+                        <input type="number" id="yearsExperience" name="yearsExperience" required min="0" max="50">
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-info-circle"></i> Additional Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="dealBreakers">Deal Breakers (Things you won't accept)</label>
+                        <textarea id="dealBreakers" name="dealBreakers" rows="3" placeholder="e.g., No startups, Must have remote option, Minimum 3 weeks vacation, No night shifts"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobSearchUrgency">Job Search Urgency <span class="required">*</span></label>
+                        <select id="jobSearchUrgency" name="jobSearchUrgency" required>
+                            <option value="">-- Select --</option>
+                            <option value="Immediate">Immediate (Available now)</option>
+                            <option value="1-2 weeks">1-2 weeks notice required</option>
+                            <option value="1 month">1 month notice required</option>
+                            <option value="2-3 months">2-3 months (Passive looking)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentSituation">Current Employment Status <span class="required">*</span></label>
+                        <select id="currentSituation" name="currentSituation" required>
+                            <option value="">-- Select --</option>
+                            <option value="Employed">Currently Employed</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Student">Student/Recent Graduate</option>
+                            <option value="Freelancing">Freelancing/Contract Work</option>
+                            <option value="Career Break">On Career Break</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information or Special Requests</label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any other information that would help us serve you better"></textarea>
+                    </div>
+                </div>
+
+                <!-- Resume Upload Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-file-upload"></i> Resume/CV</h3>
+                    <div class="upload-note">
+                        <p><strong>Note:</strong> After submitting this form, please email your current resume/CV to <a href="mailto:appliguru@gmail.com">appliguru@gmail.com</a> with the subject line: "<strong>Resume - [Your Full Name]</strong>"</p>
+                        <p>Accepted formats: PDF, DOC, DOCX</p>
+                    </div>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="form-section">
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="agreeTerms" required>
+                            I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a> <span class="required">*</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="agreeContact">
+                            I agree to receive email and phone communications from Appliguru regarding my application
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i> Submit Registration
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-contact">
+        <h2>Why Register with Appliguru?</h2>
+        <div class="why-grid">
+            <div class="why-item">
+                <i class="fas fa-clock"></i>
+                <h3>Save 10+ Hours Weekly</h3>
+                <p>Spend time on what matters - preparing for interviews and networking</p>
+            </div>
+            <div class="why-item">
+                <i class="fas fa-chart-line"></i>
+                <h3>Increase Interview Rate</h3>
+                <p>Our optimized applications get 3x more responses than DIY applications</p>
+            </div>
+            <div class="why-item">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Maintain Privacy</h3>
+                <p>Your information is secure and confidential - we never share your data</p>
+            </div>
+            <div class="why-item">
+                <i class="fas fa-users"></i>
+                <h3>Expert Support</h3>
+                <p>Dedicated team of professionals who understand your industry</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Appliguru</h3>
+                <p>Your strategic partner and application concierge. We handle the grind so you can focus on your career.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Plans & Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support & Legal</h3>
+                <ul>
+                    <li><a href="help.html">Help Center / FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-envelope"></i> appliguru@gmail.com</p>
+                <p><i class="fab fa-whatsapp"></i> 08130654576</p>
+                <p style="margin-top: 1rem;">
+                    <a href="mailto:appliguru@gmail.com" style="margin-right: 1rem;"><i class="fas fa-envelope" style="font-size: 1.5rem;"></i></a>
+                    <a href="https://wa.me/2348130654576"><i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i></a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Appliguru. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Js/main.js"></script>
+    <script src="Js/form-handler.js"></script>
+</body>
+</html>
