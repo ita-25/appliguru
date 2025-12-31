@@ -6,6 +6,159 @@
     <title>Contact & Registration - Appliguru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="CSS/style.css">
+        <style>
+.package-price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    margin: 10px 0;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.success-content {
+    text-align: left;
+}
+
+.payment-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 20px 0;
+    border-left: 4px solid #28a745;
+}
+
+.payment-info h4 {
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.btn-payment {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.btn-payment:hover {
+    background: linear-gradient(135deg, #218838 0%, #1ba87e 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.payment-note {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.contact-info {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #dee2e6;
+}
+
+.contact-info h4 {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.contact-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contact-item i {
+    color: #007bff;
+    font-size: 18px;
+}
+
+.contact-item a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-item a:hover {
+    color: #007bff;
+}
+
+.next-steps {
+    background: #e8f4ff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.next-steps h4 {
+    color: #0056b3;
+    margin-bottom: 15px;
+}
+
+.next-steps ol {
+    margin-left: 20px;
+}
+
+.next-steps li {
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.premium-features {
+    background: #fff8e1;
+    border-radius: 10px;
+    padding: 20px;
+    border-left: 4px solid #ffc107;
+}
+
+.salary-range {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Package-specific styling */
+.package-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.package-card.premium-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.package-card.standard-card {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+}
+
+.package-card.basic-card {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+}
+
+.package-features li.premium-feature {
+    color: #ffeb3b;
+    font-weight: bold;
+}
+    </style>
 </head>
 <body>
     <!-- Scroll Progress Bar -->
@@ -80,67 +233,123 @@
                 <p>We typically respond within 24 hours.</p>
             </div>
 
-            <!-- Registration Form -->
-            <form id="registrationForm" action="https://formspree.io/f/xwpgdrge" method="POST" class="registration-form">
+            <!-- Registration Form Section -->
+<section class="registration-section">
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Registration Form</h2>
+            <p>Please select your preferred package to begin your registration.</p>
+        </div>
+
+        <!-- Success Message (Hidden by default) -->
+        <div id="successMessage" class="success-message" style="display: none;">
+            <div class="success-content">
+                <i class="fas fa-check-circle"></i>
+                <h3>Registration Successful!</h3>
+                <p>Thank you for registering for our <span id="registeredPackage"></span> package.</p>
+                <p>Your application details have been received successfully.</p>
+                
+                <div class="payment-section">
+                    <div class="payment-info">
+                        <h4><i class="fas fa-credit-card"></i> Complete Your Registration with Payment</h4>
+                        <p>To activate your <span id="paymentPackage"></span> package, please complete the payment of <strong id="packagePrice"></strong> via Selar:</p>
+                        
+                        <div class="payment-cta">
+                            <a id="selarPaymentLink" href="#" target="_blank" class="btn btn-payment">
+                                <i class="fas fa-external-link-alt"></i> Pay Now via Selar
+                            </a>
+                            <p class="payment-note">After payment, please send your payment receipt to <strong>appliguru@gmail.com</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h4><i class="fas fa-headset"></i> Need Assistance?</h4>
+                        <p>For any questions or to confirm your payment, contact us:</p>
+                        <div class="contact-methods">
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span><a href="tel:08130654576">0813 065 4576</a></span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-comment-alt"></i>
+                                <span><a href="https://wa.me/2348130654576" target="_blank">Chat on WhatsApp</a></span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span><a href="mailto:appliguru@gmail.com">appliguru@gmail.com</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="next-steps">
+                    <h4><i class="fas fa-clipboard-list"></i> Next Steps:</h4>
+                    <ol>
+                        <li>Complete payment via Selar link above</li>
+                        <li>Email your payment receipt and CV to appliguru@gmail.com</li>
+                        <li>Our team will contact you within 24 hours to begin your job search journey</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Package Selection Dropdown -->
+        <div class="package-selection">
+            <div class="form-group">
+                <label for="packageSelect">Select Your Package <span class="required">*</span></label>
+                <select id="packageSelect" class="package-dropdown" required>
+                    <option value="">-- Choose a Package --</option>
+                    <option value="basic">Basic - ₦5,000 (3 applications/week)</option>
+                    <option value="standard">Standard - ₦10,000 (4 applications/week) - Most Popular</option>
+                    <option value="premium">Premium - ₦20,000 (Unlimited + Remote Jobs)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Package Information Display -->
+        <div id="packageInfo" class="package-info" style="display: none;">
+            <div class="package-card">
+                <h3 id="packageTitle"></h3>
+                <div class="package-price" id="packagePriceDisplay"></div>
+                <p id="packageDescription"></p>
+                <div class="package-features" id="packageFeatures"></div>
+            </div>
+        </div>
+
+        <!-- Registration Forms (Hidden initially) -->
+        <div id="registrationForms">
+            <!-- Basic Package Form -->
+            <form id="basicForm" class="registration-form package-form" style="display: none;" action="https://formspree.io/f/xnjnqvkv" method="POST">
+                <input type="hidden" name="package" value="Basic">
+                <input type="hidden" name="package_price" value="5000">
+                <input type="hidden" name="package_code" value="APPGU-BASIC">
+                <input type="hidden" name="formType" value="basic">
                 
                 <!-- Personal Information -->
                 <div class="form-section">
                     <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fullName">Full Name <span class="required">*</span></label>
-                            <input type="text" id="fullName" name="fullName" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="phone">Phone Number <span class="required">*</span></label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <label for="basicFullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="basicFullName" name="fullName" required>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label for="whatsapp">WhatsApp Number</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="If different from phone">
+                            <label for="basicEmail">Email Address <span class="required">*</span></label>
+                            <input type="email" id="basicEmail" name="email" required>
                         </div>
                     </div>
-                </div>
 
-                <!-- Plan Selection -->
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-box"></i> Select Your Plan</h3>
-                    
-                    <div class="form-group">
-                        <label for="plan">Preferred Plan <span class="required">*</span></label>
-                        <select id="plan" name="plan" required>
-                            <option value="">-- Select a Plan --</option>
-                            <option value="Basic">Basic - 3 applications/week (6 monthly)</option>
-                            <option value="Standard">Standard - 4 applications/week (12 monthly) - Most Popular</option>
-                            <option value="Premium">Premium - Unlimited applications</option>
-                        </select>
-                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="basicPhone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="basicPhone" name="phone" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label>Add-on Services (Optional)</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="addons" value="LinkedIn Optimization - ₦10,000">
-                                LinkedIn Optimization (₦10,000)
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="addons" value="CV Writing - ₦7,000">
-                                Professional CV Writing (₦7,000)
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="addons" value="LinkedIn + CV Bundle - ₦15,000">
-                                LinkedIn + CV Bundle (₦15,000 - Save ₦2,000!)
-                            </label>
+                        <div class="form-group">
+                            <label for="basicWhatsapp">WhatsApp Number</label>
+                            <input type="tel" id="basicWhatsapp" name="whatsapp" placeholder="If different from phone">
                         </div>
                     </div>
                 </div>
@@ -148,23 +357,158 @@
                 <!-- Job Preferences -->
                 <div class="form-section">
                     <h3 class="form-section-title"><i class="fas fa-briefcase"></i> Job Preferences</h3>
-                    
-                    <div class="form-group">
-                        <label for="jobTitles">Desired Job Titles <span class="required">*</span></label>
-                        <textarea id="jobTitles" name="jobTitles" rows="3" required placeholder="e.g., Marketing Manager, Digital Marketing Specialist, Brand Manager"></textarea>
-                        <small>Enter multiple job titles separated by commas</small>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="industries">Preferred Industries <span class="required">*</span></label>
-                        <textarea id="industries" name="industries" rows="3" required placeholder="e.g., Technology, Finance, Healthcare, E-commerce"></textarea>
-                        <small>Enter multiple industries separated by commas</small>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="basicJobTitles">Desired Job Titles <span class="required">*</span></label>
+                            <input type="text" id="basicJobTitles" name="jobTitles" required placeholder="e.g., Marketing Manager, Digital Marketing Specialist">
+                            <small>Separate multiple titles with commas</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="basicIndustries">Preferred Industries <span class="required">*</span></label>
+                            <input type="text" id="basicIndustries" name="industries" required placeholder="e.g., Technology, Finance, Healthcare">
+                            <small>Separate multiple industries with commas</small>
+                        </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="experienceLevel">Experience Level <span class="required">*</span></label>
-                            <select id="experienceLevel" name="experienceLevel" required>
+                            <label for="basicLocations">Preferred Job Locations <span class="required">*</span></label>
+                            <input type="text" id="basicLocations" name="locations" required placeholder="e.g., Lagos, Abuja, Port Harcourt">
+                            <small>Separate multiple locations with commas</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="basicExperience">Experience Level <span class="required">*</span></label>
+                            <select id="basicExperience" name="experienceLevel" required>
+                                <option value="">-- Select Level --</option>
+                                <option value="Entry Level">Entry Level (0-2 years)</option>
+                                <option value="Mid Level">Mid Level (3-5 years)</option>
+                                <option value="Senior Level">Senior Level (6+ years)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education & Employment -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-graduation-cap"></i> Education & Employment</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="basicEducation">Education Level <span class="required">*</span></label>
+                            <select id="basicEducation" name="educationLevel" required>
+                                <option value="">-- Select Level --</option>
+                                <option value="SSCE">SSCE/WAEC</option>
+                                <option value="OND">Ordinary National Diploma (OND)</option>
+                                <option value="HND">Higher National Diploma (HND)</option>
+                                <option value="Bachelor">Bachelor's Degree</option>
+                                <option value="Master">Master's Degree</option>
+                                <option value="PhD">PhD/Doctorate</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Employment Type <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Full-time" required>
+                                    Full-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Part-time">
+                                    Part-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Contract">
+                                    Contract
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Remote">
+                                    Remote
+                                </label>
+                                <!-- Note: Hybrid NOT included in Basic -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i> Register for Basic Package - ₦5,000
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-change-package">
+                        <i class="fas fa-exchange-alt"></i> Change Package
+                    </button>
+                </div>
+            </form>
+
+            <!-- Standard Package Form -->
+            <form id="standardForm" class="registration-form package-form" style="display: none;" action="https://formspree.io/f/xnjnqvkv" method="POST">
+                <input type="hidden" name="package" value="Standard">
+                <input type="hidden" name="package_price" value="10000">
+                <input type="hidden" name="package_code" value="APPGU-STANDARD">
+                <input type="hidden" name="formType" value="standard">
+                
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="standardFullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="standardFullName" name="fullName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="standardEmail">Email Address <span class="required">*</span></label>
+                            <input type="email" id="standardEmail" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="standardPhone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="standardPhone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="standardWhatsapp">WhatsApp Number</label>
+                            <input type="tel" id="standardWhatsapp" name="whatsapp" placeholder="If different from phone">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Preferences -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-briefcase"></i> Job Preferences</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="standardJobTitles">Desired Job Titles <span class="required">*</span></label>
+                            <input type="text" id="standardJobTitles" name="jobTitles" required placeholder="e.g., Marketing Manager, Digital Marketing Specialist">
+                            <small>Separate multiple titles with commas</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="standardIndustries">Preferred Industries <span class="required">*</span></label>
+                            <input type="text" id="standardIndustries" name="industries" required placeholder="e.g., Technology, Finance, Healthcare">
+                            <small>Separate multiple industries with commas</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="standardLocations">Preferred Job Locations <span class="required">*</span></label>
+                            <input type="text" id="standardLocations" name="locations" required placeholder="e.g., Lagos, Abuja, Port Harcourt, Remote">
+                            <small>Separate multiple locations with commas</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="standardExperience">Experience Level <span class="required">*</span></label>
+                            <select id="standardExperience" name="experienceLevel" required>
                                 <option value="">-- Select Level --</option>
                                 <option value="Entry Level">Entry Level (0-2 years)</option>
                                 <option value="Mid Level">Mid Level (3-5 years)</option>
@@ -172,198 +516,270 @@
                                 <option value="Executive">Executive (10+ years)</option>
                             </select>
                         </div>
-                        
+                    </div>
+                </div>
+
+                <!-- Education & Employment -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-graduation-cap"></i> Education & Employment</h3>
+
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="educationLevel">Education Level <span class="required">*</span></label>
-                            <select id="educationLevel" name="educationLevel" required>
+                            <label for="standardEducation">Education Level <span class="required">*</span></label>
+                            <select id="standardEducation" name="educationLevel" required>
                                 <option value="">-- Select Level --</option>
-                                <option value="High School">High School Diploma</option>
-                                <option value="Associate">Associate Degree</option>
+                                <option value="SSCE">SSCE/WAEC</option>
+                                <option value="OND">Ordinary National Diploma (OND)</option>
+                                <option value="HND">Higher National Diploma (HND)</option>
                                 <option value="Bachelor">Bachelor's Degree</option>
                                 <option value="Master">Master's Degree</option>
                                 <option value="PhD">PhD/Doctorate</option>
                             </select>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Employment Type & Location -->
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-map-marker-alt"></i> Employment Type & Location</h3>
-                    
-                    <div class="form-group">
-                        <label>Employment Type <span class="required">*</span></label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="employmentType" value="Full-time" required>
-                                Full-time
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="employmentType" value="Part-time">
-                                Part-time
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="employmentType" value="Contract">
-                                Contract
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="employmentType" value="Remote">
-                                Remote
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="employmentType" value="Hybrid">
-                                Hybrid
-                            </label>
+                        <div class="form-group">
+                            <label>Employment Type <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Full-time" required>
+                                    Full-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Part-time">
+                                    Part-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Contract">
+                                    Contract
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Remote">
+                                    Remote
+                                </label>
+                                <!-- Hybrid included in Standard -->
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Hybrid">
+                                    Hybrid
+                                </label>
+                            </div>
                         </div>
-                        <small>Select all that apply (at least one required)</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="locations">Preferred Job Locations <span class="required">*</span></label>
-                        <textarea id="locations" name="locations" rows="3" required placeholder="e.g., Lagos, Abuja, Remote, Port Harcourt"></textarea>
-                        <small>Enter multiple cities/regions separated by commas</small>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="willingToRelocate">Willing to Relocate? <span class="required">*</span></label>
-                            <select id="willingToRelocate" name="willingToRelocate" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                                <option value="Depends">Depends on the opportunity</option>
-                            </select>
+                            <label for="standardYearsExperience">Total Years of Experience <span class="required">*</span></label>
+                            <input type="number" id="standardYearsExperience" name="yearsExperience" required min="0" max="50" placeholder="e.g., 3">
                         </div>
-                        
+
                         <div class="form-group">
-                            <label for="remoteWork">Remote Work Preference</label>
-                            <select id="remoteWork" name="remoteWork">
-                                <option value="">-- Select --</option>
-                                <option value="Remote Only">Remote Only</option>
-                                <option value="Prefer Remote">Prefer Remote but flexible</option>
-                                <option value="Hybrid">Hybrid (Mix of office/remote)</option>
-                                <option value="Office Only">Office Only</option>
-                                <option value="No Preference">No Preference</option>
-                            </select>
+                            <label for="standardSkills">Key Skills <span class="required">*</span></label>
+                            <textarea id="standardSkills" name="keySkills" rows="3" required placeholder="e.g., Project Management, Data Analysis, Python"></textarea>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Salary & Benefits -->
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-money-bill-wave"></i> Salary & Benefits</h3>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="salaryMin">Minimum Expected Salary (₦) <span class="required">*</span></label>
-                            <input type="number" id="salaryMin" name="salaryMin" required placeholder="e.g., 150000">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="salaryMax">Maximum Expected Salary (₦)</label>
-                            <input type="number" id="salaryMax" name="salaryMax" placeholder="e.g., 300000">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="benefits">Must-Have Benefits/Perks</label>
-                        <textarea id="benefits" name="benefits" rows="3" placeholder="e.g., Health insurance, Flexible hours, Professional development, Remote work"></textarea>
-                    </div>
-                </div>
-
-                <!-- Skills & Experience -->
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-star"></i> Skills & Experience</h3>
-                    
-                    <div class="form-group">
-                        <label for="keySkills">Key Skills <span class="required">*</span></label>
-                        <textarea id="keySkills" name="keySkills" rows="4" required placeholder="e.g., Project Management, Data Analysis, Python, Adobe Creative Suite, SEO, Team Leadership"></textarea>
-                        <small>List your top skills separated by commas</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="certifications">Certifications & Licenses</label>
-                        <textarea id="certifications" name="certifications" rows="3" placeholder="e.g., PMP, CPA, Google Analytics Certified, AWS Solutions Architect"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="yearsExperience">Total Years of Experience <span class="required">*</span></label>
-                        <input type="number" id="yearsExperience" name="yearsExperience" required min="0" max="50">
-                    </div>
-                </div>
-
-                <!-- Additional Information -->
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-info-circle"></i> Additional Information</h3>
-                    
-                    <div class="form-group">
-                        <label for="dealBreakers">Deal Breakers (Things you won't accept)</label>
-                        <textarea id="dealBreakers" name="dealBreakers" rows="3" placeholder="e.g., No startups, Must have remote option, Minimum 3 weeks vacation, No night shifts"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="jobSearchUrgency">Job Search Urgency <span class="required">*</span></label>
-                        <select id="jobSearchUrgency" name="jobSearchUrgency" required>
-                            <option value="">-- Select --</option>
-                            <option value="Immediate">Immediate (Available now)</option>
-                            <option value="1-2 weeks">1-2 weeks notice required</option>
-                            <option value="1 month">1 month notice required</option>
-                            <option value="2-3 months">2-3 months (Passive looking)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="currentSituation">Current Employment Status <span class="required">*</span></label>
-                        <select id="currentSituation" name="currentSituation" required>
-                            <option value="">-- Select --</option>
-                            <option value="Employed">Currently Employed</option>
-                            <option value="Unemployed">Unemployed</option>
-                            <option value="Student">Student/Recent Graduate</option>
-                            <option value="Freelancing">Freelancing/Contract Work</option>
-                            <option value="Career Break">On Career Break</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="additionalInfo">Additional Information or Special Requests</label>
-                        <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any other information that would help us serve you better"></textarea>
-                    </div>
-                </div>
-
-                <!-- Resume Upload Information -->
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-file-upload"></i> Resume/CV</h3>
-                    <div class="upload-note">
-                        <p><strong>Note:</strong> After submitting this form, please email your current resume/CV to <a href="mailto:appliguru@gmail.com">appliguru@gmail.com</a> with the subject line: "<strong>Resume - [Your Full Name]</strong>"</p>
-                        <p>Accepted formats: PDF, DOC, DOCX</p>
-                    </div>
-                </div>
-
-                <!-- Terms & Conditions -->
-                <div class="form-section">
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="agreeTerms" required>
-                            I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a> <span class="required">*</span>
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="agreeContact">
-                            I agree to receive email and phone communications from Appliguru regarding my application
-                        </label>
                     </div>
                 </div>
 
                 <!-- Submit Button -->
                 <div class="form-submit">
                     <button type="submit" class="btn btn-primary btn-large">
-                        <i class="fas fa-paper-plane"></i> Submit Registration
+                        <i class="fas fa-paper-plane"></i> Register for Standard Package - ₦10,000
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-change-package">
+                        <i class="fas fa-exchange-alt"></i> Change Package
+                    </button>
+                </div>
+            </form>
+
+            <!-- Premium Package Form -->
+            <form id="premiumForm" class="registration-form package-form" style="display: none;" action="https://formspree.io/f/xnjnqvkv" method="POST">
+                <input type="hidden" name="package" value="Premium">
+                <input type="hidden" name="package_price" value="20000">
+                <input type="hidden" name="package_code" value="APPGU-PREMIUM">
+                <input type="hidden" name="formType" value="premium">
+                
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumFullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="premiumFullName" name="fullName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="premiumEmail">Email Address <span class="required">*</span></label>
+                            <input type="email" id="premiumEmail" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumPhone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="premiumPhone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="premiumWhatsapp">WhatsApp Number <span class="required">*</span></label>
+                            <input type="tel" id="premiumWhatsapp" name="whatsapp" required placeholder="We'll use this for priority support">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Preferences -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-briefcase"></i> Job Preferences</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumJobTitles">Desired Job Titles <span class="required">*</span></label>
+                            <input type="text" id="premiumJobTitles" name="jobTitles" required placeholder="e.g., Marketing Manager, Digital Marketing Specialist">
+                            <small>Separate multiple titles with commas</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="premiumIndustries">Preferred Industries <span class="required">*</span></label>
+                            <input type="text" id="premiumIndustries" name="industries" required placeholder="e.g., Technology, Finance, Healthcare, E-commerce">
+                            <small>Separate multiple industries with commas</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumLocations">Preferred Job Locations <span class="required">*</span></label>
+                            <input type="text" id="premiumLocations" name="locations" required placeholder="e.g., Lagos, Abuja, Remote, International, Hybrid">
+                            <small>Include "Remote" for remote positions. Separate with commas</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="premiumExperience">Experience Level <span class="required">*</span></label>
+                            <select id="premiumExperience" name="experienceLevel" required>
+                                <option value="">-- Select Level --</option>
+                                <option value="Entry Level">Entry Level (0-2 years)</option>
+                                <option value="Mid Level">Mid Level (3-5 years)</option>
+                                <option value="Senior Level">Senior Level (6-10 years)</option>
+                                <option value="Executive">Executive (10+ years)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education & Employment -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-graduation-cap"></i> Education & Employment</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumEducation">Education Level <span class="required">*</span></label>
+                            <select id="premiumEducation" name="educationLevel" required>
+                                <option value="">-- Select Level --</option>
+                                <option value="SSCE">SSCE/WAEC</option>
+                                <option value="OND">Ordinary National Diploma (OND)</option>
+                                <option value="HND">Higher National Diploma (HND)</option>
+                                <option value="Bachelor">Bachelor's Degree</option>
+                                <option value="Master">Master's Degree</option>
+                                <option value="PhD">PhD/Doctorate</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Employment Type <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Full-time" required>
+                                    Full-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Part-time">
+                                    Part-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Contract">
+                                    Contract
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Remote">
+                                    Remote (Premium Feature)
+                                </label>
+                                <!-- Hybrid included in Premium -->
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Hybrid">
+                                    Hybrid
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="International">
+                                    International/Remote Abroad (Premium Feature)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumYearsExperience">Total Years of Experience <span class="required">*</span></label>
+                            <input type="number" id="premiumYearsExperience" name="yearsExperience" required min="0" max="50" placeholder="e.g., 5">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="premiumSalary">Expected Salary Range (₦) <span class="required">*</span></label>
+                            <div class="salary-range">
+                                <input type="number" id="premiumSalaryMin" name="salaryMin" required placeholder="Minimum" style="width: 48%; margin-right: 4%;">
+                                <input type="number" id="premiumSalaryMax" name="salaryMax" required placeholder="Maximum" style="width: 48%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills & Additional Info -->
+                <div class="form-section">
+                    <h3 class="form-section-title"><i class="fas fa-star"></i> Skills & Additional Information</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumSkills">Key Skills & Certifications <span class="required">*</span></label>
+                            <textarea id="premiumSkills" name="keySkills" rows="4" required placeholder="e.g., Project Management (PMP), Python, AWS Certified, Team Leadership"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="premiumCertifications">Professional Certifications</label>
+                            <input type="text" id="premiumCertifications" name="certifications" placeholder="e.g., PMP, CPA, Google Analytics">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Add-ons -->
+                <div class="form-section premium-features">
+                    <h3 class="form-section-title"><i class="fas fa-crown"></i> Premium Add-on Services</h3>
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="addons" value="LinkedIn Optimization - ₦10,000">
+                                LinkedIn Optimization - ₦10,000
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="addons" value="CV Writing - ₦7,000">
+                                Professional CV Writing - ₦7,000
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="addons" value="LinkedIn + CV Bundle - ₦15,000">
+                                LinkedIn + CV Bundle - ₦15,000 (Save ₦2,000!)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i> Register for Premium Package - ₦20,000
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-change-package">
+                        <i class="fas fa-exchange-alt"></i> Change Package
                     </button>
                 </div>
             </form>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Why Choose Us -->
     <section class="why-choose-contact">
@@ -433,6 +849,6 @@
     </footer>
 
     <script src="Js/main.js"></script>
-    <script src="Js/form-handler.js"></script>
+    <script src="Js/form2.js"></script>
 </body>
 </html>
