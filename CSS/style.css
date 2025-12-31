@@ -1810,3 +1810,16 @@ footer {
   .a {
       text-decoration: none;
   }
+
+
+.plan-price {
+    background: linear-gradient(135deg, var(--teal), var(--navy));
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    box-shadow: 0 5px 15px rgba(64, 224, 208, 0.3);
+}
