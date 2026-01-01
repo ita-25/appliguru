@@ -13,7 +13,7 @@
                 price: '₦5,000',
                 description: 'Perfect for entry-level job seekers',
                 features: ['3 applications per week', 'Basic job matching', 'Email support', 'Local job opportunities'],
-                selarLink: 'https://selar.co/m/basic-appliguru',
+                selarLink: 'https://selar.com/3k6xnv33xw',
                 priceNumber: 5000
             },
             standard: {
@@ -21,7 +21,7 @@
                 price: '₦10,000',
                 description: 'Most Popular - Comprehensive support',
                 features: ['4 applications per week', 'Advanced job matching', 'Priority support', 'Hybrid work options'],
-                selarLink: 'https://selar.co/m/standard-appliguru',
+                selarLink: 'https://selar.com/9ss65722m1',
                 priceNumber: 10000
             },
             premium: {
@@ -29,7 +29,7 @@
                 price: '₦20,000',
                 description: 'Complete career transformation',
                 features: ['Unlimited applications', 'Remote jobs included', '24/7 support', 'International opportunities'],
-                selarLink: 'https://selar.co/m/premium-appliguru',
+                selarLink: 'https://selar.com/7g66v11e31',
                 priceNumber: 20000
             }
         };
