@@ -330,6 +330,42 @@
                 </div>
             </div>
 
+<!-- Add this after the package summary section -->
+<div class="fee-summary" style="background: #e8f4ff; border-radius: 8px; padding: 20px; margin: 25px 0; border-left: 4px solid #007bff;">
+    <h4 style="margin-top: 0; color: #0056b3; display: flex; align-items: center; gap: 10px;">
+        <i class="fas fa-file-invoice-dollar"></i> Payment Summary
+    </h4>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div>
+            <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #cfe2ff;">
+                <span>Package Price:</span>
+                <span style="font-weight: 500;">₦<span id="summaryBasePrice">5,000</span></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #cfe2ff;">
+                <span>Transaction Fees:</span>
+                <span style="color: #dc3545;">₦<span id="summaryFee">250</span></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 12px 0; font-size: 18px; font-weight: bold;">
+                <span>Total Amount:</span>
+                <span style="color: #28a745;">₦<span id="summaryTotal">5,250</span></span>
+            </div>
+        </div>
+        
+        <div style="background: white; padding: 15px; border-radius: 6px;">
+            <p style="margin: 0 0 10px 0; font-size: 14px;">
+                <strong>What these fees cover:</strong>
+            </p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 13px;">
+                <li>Secure payment processing</li>
+                <li>Bank transaction charges</li>
+                <li>VAT (Value Added Tax)</li>
+                <li>Payment gateway fees</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
             <!-- Payment Instructions -->
             <div class="payment-instructions">
                 <h3><i class="fas fa-info-circle"></i> How to Complete Your Registration</h3>
@@ -422,6 +458,31 @@
             <p>&copy; 2024 Appliguru. All rights reserved.</p>
         </div>
     </footer>
+<script>
+// Quick JavaScript to update based on package
+document.addEventListener('DOMContentLoaded', function() {
+    const feeData = {
+        basic: { base: 5000, fee: 250, total: 5250 },
+        standard: { base: 10000, fee: 450, total: 10450 },
+        premium: { base: 20000, fee: 1050, total: 21050 }
+    };
+    
+    // Determine package (simplified)
+    const urlParams = new URLSearchParams(window.location.search);
+    const packageParam = urlParams.get('package')?.toLowerCase() || 'basic';
+    
+    let packageType = 'basic';
+    if (packageParam.includes('standard')) packageType = 'standard';
+    else if (packageParam.includes('premium')) packageType = 'premium';
+    
+    const data = feeData[packageType];
+    
+    document.getElementById('summaryBasePrice').textContent = data.base.toLocaleString();
+    document.getElementById('summaryFee').textContent = data.fee.toLocaleString();
+    document.getElementById('summaryTotal').textContent = data.total.toLocaleString();
+});
+</script>
+
 
     <script src="Js/main.js"></script>
     <script src="Js/payment.js"></script>
