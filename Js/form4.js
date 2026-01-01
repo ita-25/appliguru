@@ -13,7 +13,7 @@
                 price: '₦5,000',
                 description: 'Perfect for entry-level job seekers',
                 features: ['3 applications per week', 'Basic job matching', 'Email support', 'Local job opportunities'],
-                selarLink: 'https://selar.com/3k6xnv33xw',
+                selarLink: 'https://selar.com/270p7smw72',
                 priceNumber: 5000
             },
             standard: {
