@@ -30,19 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         title: 'Basic Package',
                         price: '₦5,000',
                         priceNumber: 5000,
-                        selarLink: 'https://selar.co/m/basic-appliguru'
+                        selarLink: 'https://selar.com/3k6xnv33xw'
                     },
                     standard: {
                         title: 'Standard Package',
                         price: '₦10,000',
                         priceNumber: 10000,
-                        selarLink: 'https://selar.co/m/standard-appliguru'
+                        selarLink: 'https://selar.com/3k6xnv33xw'
                     },
                     premium: {
                         title: 'Premium Package',
                         price: '₦20,000',
                         priceNumber: 20000,
-                        selarLink: 'https://selar.co/m/premium-appliguru'
+                        selarLink: 'https://selar.com/3k6xnv33xw'
                     }
                 };
                 
