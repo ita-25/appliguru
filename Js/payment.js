@@ -36,13 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         title: 'Standard Package',
                         price: '₦10,000',
                         priceNumber: 10000,
-                        selarLink: 'https://selar.com/3k6xnv33xw'
+                        selarLink: 'https://selar.com/9ss65722m1'
                     },
                     premium: {
                         title: 'Premium Package',
                         price: '₦20,000',
                         priceNumber: 20000,
-                        selarLink: 'https://selar.com/3k6xnv33xw'
+                        selarLink: 'https://selar.com/7g66v11e31'
                     }
                 };
                 
