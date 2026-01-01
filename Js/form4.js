@@ -177,3 +177,10 @@
         });
         */
     });
+
+
+// Add this if you added the "Start New Registration" button
+document.getElementById('startNewRegistration')?.addEventListener('click', function() {
+    resetRegistrationView();
+});
+
