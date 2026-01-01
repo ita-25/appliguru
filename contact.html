@@ -450,21 +450,26 @@
                 <p>Select your preferred package and complete the registration form to begin your job search journey.</p>
             </div>
 
-            <!-- Success Message -->
-            <div id="successMessage" class="success-message" style="display: none;">
-                <i class="fas fa-check-circle"></i>
-                <h3>Registration Submitted Successfully! 🎉</h3>
-                <p>Your application details have been received and saved.</p>
-                <p>Please proceed to complete your registration with payment.</p>
-                
-                <button id="continueToPayment" class="btn-continue">
-                    <i class="fas fa-credit-card"></i> Continue to Payment
-                </button>
-                
-                <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
-                    You will be redirected to the payment completion page in a new tab.
-                </p>
-            </div>
+<!-- Updated Success Message -->
+<div id="successMessage" class="success-message" style="display: none;">
+    <i class="fas fa-check-circle"></i>
+    <h3>Registration Submitted Successfully! 🎉</h3>
+    <p>Your application details have been received and saved.</p>
+    <p>Please proceed to complete your registration with payment.</p>
+    
+    <div style="margin-top: 30px;">
+        <button id="continueToPayment" class="btn-continue">
+            <i class="fas fa-credit-card"></i> Continue to Payment
+        </button>
+        <button id="startNewRegistration" class="btn-secondary" style="margin-left: 15px;">
+            <i class="fas fa-plus"></i> Start New Registration
+        </button>
+    </div>
+    
+    <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
+        You will be redirected to the payment completion page in a new tab.
+    </p>
+</div>
 
             <!-- Package Selection -->
             <div class="package-selection">
@@ -858,7 +863,7 @@
     </footer>
 
     <script src="Js/main.js"></script>
-    <script src="Js/form3.js"></script>
+    <script src="Js/form4.js"></script>
 </body>
 </html>
 
