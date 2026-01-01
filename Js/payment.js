@@ -73,25 +73,3 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.removeItem('registrationData');
             }, 3600000); // 1 hour
         });
-
-// In payment.html, add this to clear localStorage after successful payment simulation
-// (This is optional and depends on how you handle payment confirmation)
-
-// When payment is completed (you'll need to implement payment webhook or callback)
-function onPaymentCompleted() {
-    // Clear the registration data from localStorage
-    localStorage.removeItem('registrationData');
-    
-    // Optionally send a message to the opener window to reset
-    if (window.opener && !window.opener.closed) {
-        window.opener.postMessage('paymentCompleted', '*');
-    }
-}
-
-// In index.html, listen for this message
-window.addEventListener('message', function(event) {
-    if (event.data === 'paymentCompleted') {
-        resetRegistrationView();
-        alert('Payment completed! Your registration is now active.');
-    }
-});
