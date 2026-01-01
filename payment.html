@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Payment - Appliguru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+                * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .payment-header {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .payment-header i {
+            font-size: 80px;
+            margin-bottom: 20px;
+            color: #c6f6d5;
+        }
+
+        .payment-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .payment-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .payment-content {
+            padding: 40px;
+        }
+
+        .package-summary {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid #48bb78;
+        }
+
+        .package-summary h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 20px;
+            color: #48bb78;
+        }
+
+        .summary-label {
+            color: #4a5568;
+        }
+
+        .summary-value {
+            font-weight: 600;
+        }
+
+        .payment-instructions {
+            background: #e8f4ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #4299e1;
+        }
+
+        .payment-instructions h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .steps {
+            margin-left: 20px;
+        }
+
+        .steps li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .payment-action {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn-payment {
+            background: linear-gradient(135deg, #f6e05e 0%, #d69e2e 100%);
+            color: #1a202c;
+            padding: 20px 50px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-payment:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-note {
+            margin-top: 20px;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .contact-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-section h3 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-card i {
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .contact-card a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .contact-card a:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .whatsapp-card {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+        }
+
+        .whatsapp-card i,
+        .whatsapp-card a {
+            color: white;
+        }
+
+        .email-card {
+            background: linear-gradient(135deg, #EA4335 0%, #D14836 100%);
+            color: white;
+        }
+
+        .email-card i,
+        .email-card a {
+            color: white;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                margin: 10px;
+            }
+            
+            .payment-header, .payment-content {
+                padding: 20px;
+            }
+            
+            .btn-payment {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Appliguru Logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Plans & Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+  <section class="Specialhero">
+        <div class="hero-content">
+            <h1>Payment Page</h1>
+            <h2>Registration Payment</h2>
+            <p><strong>Make Payment to complete your registration</strong></p>
+        </div>
+    </section>
+
+<div class="payment-container">
+        <div class="payment-header">
+            <i class="fas fa-credit-card"></i>
+            <h1>Complete Your Registration</h1>
+            <p>Final step to activate your AppliGuru account</p>
+        </div>
+
+        <div class="payment-content">
+            <!-- Package Summary -->
+            <div class="package-summary">
+                <h2><i class="fas fa-box"></i> Package Summary</h2>
+                <div class="summary-item">
+                    <span class="summary-label">Selected Package:</span>
+                    <span class="summary-value" id="packageName">Loading...</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Package Price:</span>
+                    <span class="summary-value" id="packagePrice">Loading...</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Registration Status:</span>
+                    <span class="summary-value" style="color: #48bb78;">Submitted ✓</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Payment Status:</span>
+                    <span class="summary-value" style="color: #e53e3e;">Pending</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total to Pay:</span>
+                    <span class="summary-value" id="totalAmount">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Payment Instructions -->
+            <div class="payment-instructions">
+                <h3><i class="fas fa-info-circle"></i> How to Complete Your Registration</h3>
+                <ol class="steps">
+                    <li><strong>Click the "Pay Now via Selar" button below</strong> to proceed to secure payment</li>
+                    <li>Complete the payment on Selar using your preferred payment method</li>
+                    <li>After successful payment, <strong>save your payment receipt</strong></li>
+                    <li>Email your payment receipt and CV to <strong>appliguru@gmail.com</strong></li>
+                    <li>Our team will contact you within <strong>24 hours</strong> to begin your job search journey</li>
+                </ol>
+            </div>
+
+            <!-- Payment Action -->
+            <div class="payment-action">
+                <a id="selarPaymentButton" href="#" target="_blank" class="btn-payment">
+                    <i class="fas fa-external-link-alt"></i> Pay Now via Selar
+                </a>
+                <p class="payment-note">You will be redirected to Selar's secure payment page</p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-section">
+                <h3><i class="fas fa-headset"></i> Need Help with Payment?</h3>
+                <p>Contact our support team for assistance:</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:08130654576">0813 065 4576</a>
+                    </div>
+                    <div class="contact-card whatsapp-card">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/2348130654576" target="_blank">Chat on WhatsApp</a>
+                    </div>
+                    <div class="contact-card email-card">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:appliguru@gmail.com">appliguru@gmail.com</a>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px; font-size: 14px; color: #718096;">
+                    <i class="fas fa-exclamation-circle"></i> Your registration will only be activated after payment confirmation. Please ensure you complete the payment to start receiving job applications.
+                </p>
+            </div>
+
+            <!-- Back Link -->
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Registration</a>
+            </div>
+        </div>
+    </div>
+
+
+ <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Appliguru</h3>
+                <p>Your strategic partner and application concierge. We handle the grind so you can focus on your career.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Plans & Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support & Legal</h3>
+                <ul>
+                    <li><a href="help.html">Help Center / FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-envelope"></i> appliguru@gmail.com</p>
+                <p><i class="fab fa-whatsapp"></i> 08130654576</p>
+                <p style="margin-top: 1rem;">
+                    <a href="mailto:appliguru@gmail.com" style="margin-right: 1rem;"><i class="fas fa-envelope" style="font-size: 1.5rem;"></i></a>
+                    <a href="https://wa.me/2348130654576"><i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i></a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Appliguru. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Js/main.js"></script>
+    <script src="Js/payment.js"></script>
+</body>
+</html>
