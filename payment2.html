@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Payment - AppliGuru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Use the same styles as the main website */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .payment-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .payment-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .payment-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .order-summary, .bank-details, .instructions, .confirmation {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .detail-value {
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .bank-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .bank-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .bank-item:last-child {
+            border-bottom: none;
+        }
+
+        .bank-label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .bank-value {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .copy-btn {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn:hover {
+            background: #3182ce;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .payment-content {
+                padding: 20px;
+            }
+
+            .payment-header h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1>Complete Your Payment</h1>
+            <p>Follow the instructions below to complete your registration</p>
+        </div>
+
+        <div class="payment-content">
+            <!-- Order Summary -->
+            <div class="section">
+                <h2>Order Summary</h2>
+                <div class="order-summary">
+                    <div class="detail-row">
+                        <span class="detail-label">Order ID:</span>
+                        <span class="detail-value" id="orderId">APPGU-XXXXXXXX</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Package:</span>
+                        <span class="detail-value" id="packageName">Basic Package</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Amount:</span>
+                        <span class="detail-value" id="amount">₦5,000</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Customer Name:</span>
+                        <span class="detail-value" id="customerName">John Doe</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Customer Email:</span>
+                        <span class="detail-value" id="customerEmail">john@example.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bank Transfer Details -->
+            <div class="section">
+                <h2>Bank Transfer Details</h2>
+                <div class="bank-details">
+                    <p>Transfer the exact amount to the following account:</p>
+                    <div class="bank-info">
+                        <div class="bank-item">
+                            <span class="bank-label">Bank Name:</span>
+                            <span class="bank-value">Opay</span>
+                            <button class="copy-btn" data-text="Opay">Copy</button>
+                        </div>
+                        <div class="bank-item">
+                            <span class="bank-label">Account Number:</span>
+                            <span class="bank-value">8130654576</span>
+                            <button class="copy-btn" data-text="8130654576">Copy</button>
+                        </div>
+                        <div class="bank-item">
+                            <span class="bank-label">Account Name:</span>
+                            <span class="bank-value">Tolulope Damilola Omopariola</span>
+                            <button class="copy-btn" data-text="Tolulope Damilola Omopariola">Copy</button>
+                        </div>
+                        <div class="bank-item">
+                            <span class="bank-label">Transfer Amount:</span>
+                            <span class="bank-value" id="transferAmount">₦5,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="section">
+                <h2>Instructions</h2>
+                <div class="instructions">
+                    <ol>
+                        <li>Transfer <strong>exactly</strong> the amount shown above to the bank account provided.</li>
+                        <li>Use your <strong>Order ID</strong> as the transaction reference.</li>
+                        <li>After payment, click the WhatsApp button below to send your payment receipt.</li>
+                        <li>Alternatively, you can fill out the payment confirmation form below.</li>
+                        <li>Once we confirm your payment, we will activate your account and send you login details.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- WhatsApp Confirmation -->
+            <div class="section">
+                <h2>Confirm via WhatsApp</h2>
+                <div class="confirmation">
+                    <p>Click the button below to send a pre-filled message to our WhatsApp. Please attach your payment receipt.</p>
+                    <a href="#" id="whatsappLink" class="whatsapp-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Confirm Payment on WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Payment Confirmation Form -->
+            <div class="section">
+                <h2>Payment Confirmation Form</h2>
+                <div class="confirmation">
+                    <p>If you prefer, you can submit your payment details using the form below. Please provide your transaction reference and upload a screenshot of your payment receipt.</p>
+                    <form id="paymentConfirmationForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="order_id" id="formOrderId">
+                        <input type="hidden" name="package" id="formPackage">
+                        <input type="hidden" name="amount" id="formAmount">
+                        <input type="hidden" name="customer_name" id="formCustomerName">
+                        <input type="hidden" name="customer_email" id="formCustomerEmail">
+                        
+                        <div class="form-group">
+                            <label for="transactionRef">Transaction Reference *</label>
+                            <input type="text" id="transactionRef" name="transaction_ref" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentDate">Payment Date *</label>
+                            <input type="date" id="paymentDate" name="payment_date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="receipt">Upload Payment Receipt (Screenshot) *</label>
+                            <input type="file" id="receipt" name="receipt" accept="image/*,.pdf" required>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Submit Payment Confirmation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('order') || 'APPGU-XXXXXXXX';
+        const packageType = urlParams.get('package') || 'basic';
+        const amount = urlParams.get('amount') || '5000';
+        const customerName = urlParams.get('name') || 'N/A';
+        const customerEmail = urlParams.get('email') || 'N/A';
+        const customerPhone = urlParams.get('phone') || 'N/A';
+
+        // Package display names
+        const packageNames = {
+            basic: 'Basic Package',
+            standard: 'Standard Package',
+            premium: 'Premium Package'
+        };
+
+        // Update order summary
+        document.getElementById('orderId').textContent = orderId;
+        document.getElementById('packageName').textContent = packageNames[packageType] || packageType;
+        document.getElementById('amount').textContent = '₦' + parseInt(amount).toLocaleString();
+        document.getElementById('customerName').textContent = decodeURIComponent(customerName);
+        document.getElementById('customerEmail').textContent = decodeURIComponent(customerEmail);
+        document.getElementById('transferAmount').textContent = '₦' + parseInt(amount).toLocaleString();
+
+        // Update form hidden fields
+        document.getElementById('formOrderId').value = orderId;
+        document.getElementById('formPackage').value = packageType;
+        document.getElementById('formAmount').value = amount;
+        document.getElementById('formCustomerName').value = decodeURIComponent(customerName);
+        document.getElementById('formCustomerEmail').value = decodeURIComponent(customerEmail);
+
+        // Set up WhatsApp link
+        const whatsappMessage = `Hello AppliGuru! I have made payment for my order.
+
+Order ID: ${orderId}
+Package: ${packageNames[packageType] || packageType}
+Amount: ₦${parseInt(amount).toLocaleString()}
+Name: ${decodeURIComponent(customerName)}
+Email: ${decodeURIComponent(customerEmail)}
+Phone: ${decodeURIComponent(customerPhone) || 'N/A'}
+
+I have attached the payment receipt. Please activate my account.`;
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        document.getElementById('whatsappLink').href = `https://wa.me/2348130654576?text=${encodedMessage}`;
+
+        // Copy buttons
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const text = this.getAttribute('data-text');
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+
+        // Form submission
+        document.getElementById('paymentConfirmationForm').addEventListener('submit', function(e) {
+            // You can add form validation here if needed
+            // If using Formspree, the form will be submitted normally
+        });
+    </script>
+</body>
+</html>
