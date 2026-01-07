@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppliGuru - Registration</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="CSS/style.css">
     <style>
         * {
             margin: 0;
@@ -12,14 +14,6 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
 
         .registration-section {
             max-width: 1200px;
@@ -392,12 +386,40 @@
     </style>
 </head>
 <body>
-    <section class="registration-section">
-        <div class="form-container">
-            <div class="form-header">
-                <h2>AppliGuru Registration</h2>
-                <p>Select your preferred package and complete the registration form to begin your job search journey.</p>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Header with Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Appliguru Logo">
+                </a>
             </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Plans & Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+ <!-- Page Header -->
+  <section class="Specialhero">
+        <div class="hero-content">
+            <h1>AppliGuru Registration</h1>
+            <h2>Apply</h2>
+            <p><strong>Select your preferred package and complete the registration form to begin your job search journey.</strong></p>
+        </div>
+  </section>
 
             <!-- Fee Notice -->
             <div class="fee-notice">
@@ -534,9 +556,7 @@
                                 <label class="checkbox-label">
                                     <input type="checkbox" name="employmentType" value="Contract"> Contract
                                 </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="employmentType" value="Remote"> Remote
-                                </label>
+                                
                                 <!-- No Hybrid in Basic -->
                             </div>
                         </div>
@@ -633,9 +653,6 @@
                                 </label>
                                 <label class="checkbox-label">
                                     <input type="checkbox" name="employmentType" value="Contract"> Contract
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="employmentType" value="Remote"> Remote
                                 </label>
                                 <!-- Hybrid included in Standard -->
                                 <label class="checkbox-label">
@@ -756,6 +773,48 @@
             </div>
         </div>
     </section>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Appliguru</h3>
+                <p>Your strategic partner and application concierge. We handle the grind so you can focus on your career.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Plans & Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support & Legal</h3>
+                <ul>
+                    <li><a href="help.html">Help Center / FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-envelope"></i> appliguru@gmail.com</p>
+                <p><i class="fab fa-whatsapp"></i> 08130654576</p>
+                <p style="margin-top: 1rem;">
+                    <a href="mailto:appliguru@gmail.com" style="margin-right: 1rem;"><i class="fas fa-envelope" style="font-size: 1.5rem;"></i></a>
+                    <a href="https://wa.me/2348130654576"><i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i></a>
+                    <a href="https://www.instagram.com/appliguru?igsh=YzljYTk1ODg3Zg=="><i class="fab fa-x" style="font-size: 1.5rem;"></i></a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Appliguru. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Js/main.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -776,7 +835,7 @@
                         '3 applications per week',
                         'Basic job matching',
                         'Email support',
-                        'Weekly application tracking',
+                        '2Weeks application tracking',
                         'Local job opportunities only'
                     ],
                     amount: 5000
@@ -788,10 +847,9 @@
                     features: [
                         '4 applications per week',
                         'Advanced job matching algorithm',
+                        '3Weeks application tracking',
                         'Priority email & WhatsApp support',
-                        'Interview preparation guide',
-                        'Resume feedback session',
-                        'Hybrid work options included'
+                        'Interview assistant tips',
                     ],
                     amount: 10000
                 },
@@ -800,14 +858,12 @@
                     price: '₦20,000',
                     description: 'Complete career transformation with unlimited opportunities',
                     features: [
-                        'Unlimited job applications',
+                        '20 Job applications a month',
                         'Premium job matching with AI',
                         '24/7 priority support',
                         'Personal career consultant',
-                        'Interview coaching sessions',
+                        'Top-notch Interview assistant tip',
                         'Remote job applications included',
-                        'International opportunities',
-                        'LinkedIn optimization tips'
                     ],
                     amount: 20000
                 }
