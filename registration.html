@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Link to your CSS file -->
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/policy.css">
     <style>
         * {
             margin: 0;
@@ -562,13 +563,20 @@
                         </div>
                     </div>
 
+ <!-- POLICY AGREEMENT CHECKBOX FOR CHECKOUT -->
+            <div class="policy-checkbox-container">
+                <input type="checkbox" id="policy-agreement" class="policy-checkbox">
+                <label for="policy-agreement" class="policy-label">
+                    I understand and agree that Appliguru provides job application assistance services but does not guarantee employment. Success in obtaining a job depends on various factors including my interview performance and qualifications. 
+                    <a class="policy-link" id="view-full-policy">View full policy</a>
+                </label>
+            </div>
+
                     <div class="form-submit">
                         <button type="submit" class="btn-primary">
                             <i class="fas fa-paper-plane"></i> Submit Basic Registration - ₦5,000
                         </button>
-                        <button type="button" class="btn-secondary btn-change-package">
-                            <i class="fas fa-exchange-alt"></i> Change Package
-                        </button>
+                        
                     </div>
                 </form>
 
@@ -662,13 +670,23 @@
                         </div>
                     </div>
 
+
+ <!-- POLICY AGREEMENT CHECKBOX FOR CHECKOUT -->
+            <div class="policy-checkbox-container">
+                <input type="checkbox" id="policy-agreement" class="policy-checkbox">
+                <label for="policy-agreement" class="policy-label">
+                    I understand and agree that Appliguru provides job application assistance services but does not guarantee employment. Success in obtaining a job depends on various factors including my interview performance and qualifications. 
+                    <a class="policy-link" id="view-full-policy">View full policy</a>
+                </label>
+            </div>
+
+
+
                     <div class="form-submit">
                         <button type="submit" class="btn-primary">
                             <i class="fas fa-paper-plane"></i> Submit Standard Registration - ₦10,000
                         </button>
-                        <button type="button" class="btn-secondary btn-change-package">
-                            <i class="fas fa-exchange-alt"></i> Change Package
-                        </button>
+                        
                     </div>
                 </form>
 
@@ -749,25 +767,33 @@
                                     <input type="checkbox" name="employmentType" value="Full-time" required> Full-time
                                 </label>
                                 <label class="checkbox-label">
-                                    <input type="checkbox" name="employmentType" value="Remote"> Remote (Premium Feature)
-                                </label>
+                                   
                                 <label class="checkbox-label">
                                     <input type="checkbox" name="employmentType" value="Hybrid"> Hybrid
                                 </label>
                                 <label class="checkbox-label">
-                                    <input type="checkbox" name="employmentType" value="International"> International/Remote Abroad
-                                </label>
+                                   
                             </div>
                         </div>
                     </div>
+
+
+ <!-- POLICY AGREEMENT CHECKBOX FOR CHECKOUT -->
+            <div class="policy-checkbox-container">
+                <input type="checkbox" id="policy-agreement" class="policy-checkbox">
+                <label for="policy-agreement" class="policy-label">
+                    I understand and agree that Appliguru provides job application assistance services but does not guarantee employment. Success in obtaining a job depends on various factors including my interview performance and qualifications. 
+                    <a class="policy-link" id="view-full-policy">View full policy</a>
+                </label>
+            </div>
+
+
 
                     <div class="form-submit">
                         <button type="submit" class="btn-primary">
                             <i class="fas fa-paper-plane"></i> Submit Premium Registration - ₦20,000
                         </button>
-                        <button type="button" class="btn-secondary btn-change-package">
-                            <i class="fas fa-exchange-alt"></i> Change Package
-                        </button>
+                        
                     </div>
                 </form>
             </div>
@@ -1040,5 +1066,7 @@
             }
         });
     </script>
+     <script src="Js/main.js"></script>
+      <script src="Js/policy.js"></script>
 </body>
 </html>
