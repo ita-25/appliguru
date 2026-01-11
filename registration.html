@@ -957,7 +957,16 @@
     <script src="Js/main.js"></script>
 
     <script>
-    // NEW: Service Payment Elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const packageSelect = document.getElementById('packageSelect');
+            const packageInfo = document.getElementById('packageInfo');
+            const packageSelectionDiv = document.querySelector('.package-selection');
+            const registrationFormsDiv = document.getElementById('registrationForms');
+            const successMessage = document.getElementById('successMessage');
+            const continueToPayment = document.getElementById('continueToPayment');
+            let selectedPackageData = null;
+
+            // NEW: Service Payment Elements
             const servicePaymentSection = document.getElementById('servicePaymentSection');
             const servicePaymentTitle = document.getElementById('servicePaymentTitle');
             const servicePaymentAmount = document.getElementById('servicePaymentAmount');
@@ -975,7 +984,7 @@
             let selectedServiceData = null;
             let currentOrderId = '';
 
-            // Service details for direct payments
+             // Service details for direct payments
             const serviceDetails = {
                 'linkedin': {
                     name: 'LinkedIn Optimization',
@@ -994,15 +1003,6 @@
                 }
             };
 
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const packageSelect = document.getElementById('packageSelect');
-            const packageInfo = document.getElementById('packageInfo');
-            const packageSelectionDiv = document.querySelector('.package-selection');
-            const registrationFormsDiv = document.getElementById('registrationForms');
-            const successMessage = document.getElementById('successMessage');
-            const continueToPayment = document.getElementById('continueToPayment');
-            let selectedPackageData = null;
 
             const packages = {
                 basic: {
