@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Appliguru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .payment-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .payment-header h1 {
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .payment-header .service-name {
+            font-size: 1.2rem;
+            color: #283593;
+            font-weight: 600;
+        }
+        
+        .payment-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-details {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .amount-section, .info-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+        }
+        
+        .amount-box {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .amount-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .amount-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .info-section h3, .payment-instructions h3, .whatsapp-section h3 {
+            color: #1a237e;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .bank-details {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+            margin-top: 15px;
+        }
+        
+        .bank-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .bank-detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .detail-value {
+            color: #1a237e;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        
+        .payment-instructions, .whatsapp-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .instruction-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: #1a237e;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-button:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-button i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .whatsapp-message-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin: 15px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        
+        .service-summary {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .policy-reminder {
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+            font-size: 0.9rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #1a237e;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .copy-btn {
+            background: #1a237e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #283593;
+        }
+        
+        .copied-message {
+            color: #4CAF50;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1>Complete Your Payment</h1>
+            <div class="service-name" id="service-name">Service Name</div>
+        </div>
+        
+        <div class="payment-details">
+            <div class="amount-section">
+                <div class="amount-box">
+                    <div class="amount-label">Amount to Pay</div>
+                    <div class="amount-value" id="amount-value">₦0</div>
+                </div>
+                
+                <div class="service-summary" id="service-summary">
+                    <!-- Service summary will be filled by JavaScript -->
+                </div>
+                
+                <div class="policy-reminder">
+                    <i class="fas fa-exclamation-circle"></i> 
+                    <strong>Important:</strong> Appliguru provides job application assistance but does not guarantee employment. Your interview performance is key to securing a job.
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3>Payment Information</h3>
+                <p>Please transfer the exact amount to the following bank account:</p>
+                
+                <div class="bank-details">
+                    <div class="bank-detail-item">
+                        <span class="detail-label">Bank Name:</span>
+                        <span class="detail-value" id="bank-name">Your Bank Name</span>
+                        <button class="copy-btn" data-copy="bank-name">Copy</button>
+                        <span class="copied-message">Copied!</span>
+                    </div>
+                    <div class="bank-detail-item">
+                        <span class="detail-label">Account Number:</span>
+                        <span class="detail-value" id="account-number">0123456789</span>
+                        <button class="copy-btn" data-copy="account-number">Copy</button>
+                        <span class="copied-message">Copied!</span>
+                    </div>
+                    <div class="bank-detail-item">
+                        <span class="detail-label">Account Name:</span>
+                        <span class="detail-value" id="account-name">Appliguru Services</span>
+                        <button class="copy-btn" data-copy="account-name">Copy</button>
+                        <span class="copied-message">Copied!</span>
+                    </div>
+                    <div class="bank-detail-item">
+                        <span class="detail-label">Reference:</span>
+                        <span class="detail-value" id="payment-reference">APP<span id="ref-number">001</span></span>
+                        <button class="copy-btn" data-copy="payment-reference">Copy</button>
+                        <span class="copied-message">Copied!</span>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                    <i class="fas fa-info-circle"></i> Use the reference code above when making your payment for easy identification.
+                </p>
+            </div>
+        </div>
+        
+        <div class="payment-instructions">
+            <h3>Payment Instructions</h3>
+            <div class="instruction-step">
+                <div class="step-number">1</div>
+                <div>Transfer the exact amount shown above to our bank account</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-number">2</div>
+                <div>Use the reference code provided above as the transfer description</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-number">3</div>
+                <div>After payment, click the WhatsApp button below to send us your payment confirmation</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-number">4</div>
+                <div>We'll confirm your payment within 24 hours and activate your service</div>
+            </div>
+        </div>
+        
+        <div class="whatsapp-section">
+            <h3>Confirm Payment via WhatsApp</h3>
+            <p>After making payment, click the button below to send us a confirmation message:</p>
+            
+            <div class="whatsapp-message-box" id="whatsapp-message">
+                <!-- WhatsApp message will be filled by JavaScript -->
+            </div>
+            
+            <a href="#" class="whatsapp-button" id="whatsapp-link" target="_blank">
+                <i class="fab fa-whatsapp"></i> Send WhatsApp Confirmation
+            </a>
+            
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                <i class="fas fa-phone"></i> WhatsApp: <strong>+234 812 345 6789</strong>
+            </p>
+        </div>
+        
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Services
+        </a>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const service = urlParams.get('service') || 'LinkedIn Optimization';
+        const amount = urlParams.get('amount') || '10000';
+        const plan = urlParams.get('plan') || '';
+        
+        // Service details mapping
+        const serviceDetails = {
+            'LinkedInOptimization': {
+                name: 'LinkedIn Optimization',
+                description: 'Professional LinkedIn profile optimization to maximize recruiter visibility',
+                defaultAmount: '10000'
+            },
+            'CVWriting': {
+                name: 'CV Writing Service',
+                description: 'Professional CV crafted to showcase your unique value',
+                defaultAmount: '7000'
+            },
+            'Bundle': {
+                name: 'LinkedIn + CV Bundle',
+                description: 'LinkedIn Optimization and CV Writing together',
+                defaultAmount: '15000'
+            },
+            'RemotePackage': {
+                name: 'Remote Job Applications Package',
+                description: '4 remote job applications per week',
+                defaultAmount: '30000'
+            },
+            'Basic+Remote': {
+                name: 'Basic Plan + Remote Package',
+                description: 'Basic plan with 4 remote job applications weekly',
+                defaultAmount: '35000'
+            },
+            'Standard+Remote': {
+                name: 'Standard Plan + Remote Package',
+                description: 'Standard plan with 4 remote job applications weekly',
+                defaultAmount: '40000'
+            },
+            'Premium+Remote': {
+                name: 'Premium Plan + Remote Package',
+                description: 'Premium plan with 4 remote job applications weekly',
+                defaultAmount: '50000'
+            }
+        };
+        
+        // Get service info
+        const serviceInfo = serviceDetails[service] || {
+            name: service,
+            description: 'Appliguru Service',
+            defaultAmount: amount
+        };
+        
+        const finalAmount = amount || serviceInfo.defaultAmount;
+        const serviceName = serviceInfo.name;
+        const serviceDescription = serviceInfo.description;
+        
+        // Update page content
+        document.getElementById('service-name').textContent = serviceName;
+        document.getElementById('amount-value').textContent = `₦${parseInt(finalAmount).toLocaleString()}`;
+        
+        // Generate random reference number
+        const refNumber = Math.floor(100 + Math.random() * 900);
+        document.getElementById('ref-number').textContent = refNumber;
+        
+        // Update service summary
+        document.getElementById('service-summary').innerHTML = `
+            <strong>Service:</strong> ${serviceName}<br>
+            <strong>Description:</strong> ${serviceDescription}<br>
+            ${plan ? `<strong>Plan:</strong> ${plan}<br>` : ''}
+            <strong>Amount:</strong> ₦${parseInt(finalAmount).toLocaleString()}<br>
+            <strong>Reference:</strong> APP${refNumber}
+        `;
+        
+        // Create WhatsApp message
+        const whatsappMessage = `Hello Appliguru,
+
+I just made payment for:
+Service: ${serviceName}
+${plan ? `Plan: ${plan}\n` : ''}Amount: ₦${parseInt(finalAmount).toLocaleString()}
+Reference: APP${refNumber}
+
+Please confirm my payment and activate my service.
+
+Thank you!`;
+        
+        document.getElementById('whatsapp-message').textContent = whatsappMessage;
+        
+        // Encode WhatsApp message for URL
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        const whatsappNumber = "2348123456789"; // Replace with your WhatsApp number
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        
+        // Set WhatsApp link
+        document.getElementById('whatsapp-link').href = whatsappUrl;
+        
+        // Copy to clipboard functionality
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-copy');
+                const targetElement = document.getElementById(targetId);
+                const textToCopy = targetElement.textContent;
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    // Show "Copied!" message
+                    const copiedMessage = this.nextElementSibling;
+                    copiedMessage.style.display = 'inline';
+                    
+                    // Hide message after 2 seconds
+                    setTimeout(() => {
+                        copiedMessage.style.display = 'none';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            });
+        });
+        
+        // Log payment page view (for analytics)
+        console.log(`Payment page viewed for: ${serviceName}, Amount: ₦${finalAmount}`);
+    </script>
+</body>
+              </html>
