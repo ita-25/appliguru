@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppliGuru - Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .registration-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h2 {
+            color: #2d3748;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .form-header p {
+            color: #4a5568;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Package Selection */
+        .package-selection {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            border: 2px solid #dee2e6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .required {
+            color: #e53e3e;
+        }
+
+        .package-dropdown {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .package-dropdown:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* NEW: Additional Services Section */
+        .additional-services {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f0f9ff;
+            border-radius: 10px;
+            border: 2px solid #bae6fd;
+        }
+
+        .additional-services h3 {
+            color: #0c4a6e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .services-checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .service-checkbox-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #cbd5e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .service-checkbox-label:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .service-checkbox-label.checked {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .service-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-price {
+            font-weight: bold;
+            color: #0c4a6e;
+            font-size: 1.1rem;
+        }
+
+        /* Package Info */
+        .package-info {
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            animation: slideDown 0.5s ease;
+            display: none;
+        }
+
+        .basic-card {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+        }
+
+        .standard-card {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        }
+
+        .premium-card {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+        }
+
+        .remote-card {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .remote-addon-card {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+        }
+
+        .package-card h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .package-features {
+            margin-top: 20px;
+        }
+
+        .package-features ul {
+            list-style: none;
+        }
+
+        .package-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .package-features li i {
+            margin-right: 10px;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            padding: 40px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s ease;
+            text-align: center;
+        }
+
+        .success-content {
+            text-align: center;
+        }
+
+        .success-content i {
+            font-size: 80px;
+            margin-bottom: 20px;
+            color: #c6f6d5;
+        }
+
+        .success-content h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .btn-continue {
+            background: linear-gradient(135deg, #f6e05e 0%, #d69e2e 100%);
+            color: #1a202c;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-notice {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .payment-notice p {
+            margin: 10px 0;
+        }
+
+        /* Registration Forms */
+        .registration-form {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+        }
+
+        .form-section-title {
+            color: #2d3748;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 15px;
+            background: white;
+            border-radius: 6px;
+            border: 2px solid #cbd5e0;
+            transition: all 0.3s;
+        }
+
+        .checkbox-label:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        small {
+            display: block;
+            margin-top: 5px;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .btn-secondary {
+            background: #718096;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 15px;
+        }
+
+        .btn-secondary:hover {
+            background: #4a5568;
+        }
+
+        /* NEW: Total Amount Display */
+        .total-amount-display {
+            background: linear-gradient(135deg, #f6e05e 0%, #d69e2e 100%);
+            color: #1a202c;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .amount-breakdown {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .amount-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .amount-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #1a202c;
+        }
+
+        /* Fee Notice */
+        .fee-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .fee-notice p {
+            margin: 0;
+            color: #856404;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+            }
+            
+            .form-header h2 {
+                font-size: 28px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="registration-section">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>AppliGuru Registration</h2>
+                <p>Select your preferred package and complete the registration form to begin your job search journey.</p>
+            </div>
+
+            <!-- Fee Notice -->
+            <div class="fee-notice">
+                <p><i class="fas fa-info-circle"></i> <strong>No Additional Fees:</strong> All prices include complete package costs. No hidden transaction fees.</p>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-content">
+                    <i class="fas fa-check-circle"></i>
+                    <h3 id="successTitle">Registration Submitted Successfully! 🎉</h3>
+                    <p>Your application details have been received and saved.</p>
+                    <p>Please proceed to complete your registration with payment.</p>
+                    
+                    <div class="payment-notice">
+                        <p><strong>Payment Method:</strong> Bank Transfer (No additional fees)</p>
+                        <p><strong>Bank:</strong> Opay</p>
+                        <p><strong>Account:</strong> 8130654576 | Tolulope Damilola Omopariola</p>
+                        <p><strong>Reference:</strong> <span id="paymentReference">APPGU-001</span></p>
+                    </div>
+
+                    <div id="whatsappConfirmation" style="margin-top: 20px; display: none;">
+                        <p><strong>Confirm via WhatsApp:</strong></p>
+                        <a href="#" id="whatsappLink" class="btn-continue" style="background: #25D366; color: white; text-decoration: none;">
+                            <i class="fab fa-whatsapp"></i> Send Payment Confirmation
+                        </a>
+                    </div>
+                    
+                    <button id="continueToPayment" class="btn-continue">
+                        <i class="fas fa-university"></i> View Payment Instructions
+                    </button>
+                    
+                    <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
+                        Please save your reference number for payment identification.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Package Selection -->
+            <div class="package-selection">
+                <div class="form-group">
+                    <label for="packageSelect">Select Your Package <span class="required">*</span></label>
+                    <select id="packageSelect" class="package-dropdown" required>
+                        <option value="">-- Choose a Package --</option>
+                        <option value="basic">Basic - ₦5,000 (3 applications/week)</option>
+                        <option value="standard">Standard - ₦10,000 (4 applications/week) - Most Popular</option>
+                        <option value="premium">Premium - ₦20,000 (Unlimited + Remote Jobs)</option>
+                        <!-- NEW: Remote Special Packages -->
+                        <option value="remote">Remote Special - ₦30,000 (4 remote applications/week)</option>
+                        <option value="basic+remote">Basic + Remote - ₦35,000</option>
+                        <option value="standard+remote">Standard + Remote - ₦40,000</option>
+                        <option value="premium+remote">Premium + Remote - ₦50,000</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- NEW: Additional Services Section -->
+            <div class="additional-services">
+                <h3><i class="fas fa-plus-circle"></i> Additional Services (Optional)</h3>
+                <p>Enhance your job search with these premium services:</p>
+                
+                <div class="services-checkbox-group">
+                    <label class="service-checkbox-label" data-service="LinkedIn" data-price="10000">
+                        <div class="service-info">
+                            <input type="checkbox" class="service-checkbox">
+                            <div>
+                                <strong>LinkedIn Optimization</strong>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">
+                                    Maximize recruiter visibility and enhance your professional brand
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-price">₦10,000</div>
+                    </label>
+                    
+                    <label class="service-checkbox-label" data-service="CV" data-price="7000">
+                        <div class="service-info">
+                            <input type="checkbox" class="service-checkbox">
+                            <div>
+                                <strong>CV Writing</strong>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">
+                                    Professional CV crafted to showcase your unique value
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-price">₦7,000</div>
+                    </label>
+                    
+                    <label class="service-checkbox-label" data-service="Bundle" data-price="15000">
+                        <div class="service-info">
+                            <input type="checkbox" class="service-checkbox">
+                            <div>
+                                <strong>LinkedIn + CV Bundle</strong>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">
+                                    Save ₦2,000 when you get both services together
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-price">₦15,000</div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- NEW: Total Amount Display -->
+            <div id="totalAmountDisplay" class="total-amount-display" style="display: none;">
+                <div>Total Amount: <span id="totalAmount">₦0</span></div>
+                <div id="amountBreakdown" class="amount-breakdown" style="display: none;"></div>
+            </div>
+
+            <!-- Package Information -->
+            <div id="packageInfo" class="package-info">
+                <div class="package-card">
+                    <h3 id="packageTitle"></h3>
+                    <div class="package-price" id="packagePriceDisplay"></div>
+                    <p id="packageDescription"></p>
+                    <div class="package-features" id="packageFeatures"></div>
+                </div>
+            </div>
+
+            <!-- Registration Forms -->
+            <div id="registrationForms">
+                <!-- Basic Package Form -->
+                <form id="basicForm" class="registration-form" action="https://formspree.io/f/xnjnqvkv" method="POST">
+                    <input type="hidden" name="package" value="Basic">
+                    <input type="hidden" name="package_price" value="5000">
+                    <input type="hidden" name="package_code" value="APPGU-BASIC">
+                    
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="basicFullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="basicFullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="basicEmail">Email Address <span class="required">*</span></label>
+                                <input type="email" id="basicEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="basicPhone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="basicPhone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="basicWhatsapp">WhatsApp Number</label>
+                                <input type="tel" id="basicWhatsapp" name="whatsapp">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Preferences -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fas fa-briefcase"></i> Job Preferences</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="basicJobTitles">Desired Job Titles <span class="required">*</span></label>
+                                <input type="text" id="basicJobTitles" name="jobTitles" required placeholder="e.g., Marketing Manager, Digital Marketing Specialist">
+                                <small>Separate multiple titles with commas</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="basicLocations">Preferred Job Locations <span class="required">*</span></label>
+                                <input type="text" id="basicLocations" name="locations" required placeholder="e.g., Lagos, Abuja, Port Harcourt">
+                                <small>Separate multiple locations with commas</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="basicEducation">Education Level <span class="required">*</span></label>
+                                <select id="basicEducation" name="educationLevel" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="SSCE">SSCE/WAEC</option>
+                                    <option value="OND">Ordinary National Diploma (OND)</option>
+                                    <option value="HND">Higher National Diploma (HND)</option>
+                                    <option value="Bachelor">Bachelor's Degree</option>
+                                    <option value="Master">Master's Degree</option>
+                                    <option value="PhD">PhD/Doctorate</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="basicExperience">Experience Level <span class="required">*</span></label>
+                                <select id="basicExperience" name="experienceLevel" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="Entry Level">Entry Level (0-2 years)</option>
+                                    <option value="Mid Level">Mid Level (3-5 years)</option>
+                                    <option value="Senior Level">Senior Level (6+ years)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Employment Type <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Full-time" required> Full-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Part-time"> Part-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Contract"> Contract
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Remote"> Remote
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Registration - <span id="basicTotalAmount">₦5,000</span>
+                        </button>
+                        <button type="button" class="btn-secondary btn-change-package">
+                            <i class="fas fa-exchange-alt"></i> Change Package
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Standard Package Form -->
+                <form id="standardForm" class="registration-form" action="https://formspree.io/f/xnjnqvkv" method="POST">
+                    <input type="hidden" name="package" value="Standard">
+                    <input type="hidden" name="package_price" value="10000">
+                    <input type="hidden" name="package_code" value="APPGU-STANDARD">
+                    
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="standardFullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="standardFullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="standardEmail">Email Address <span class="required">*</span></label>
+                                <input type="email" id="standardEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="standardPhone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="standardPhone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="standardWhatsapp">WhatsApp Number</label>
+                                <input type="tel" id="standardWhatsapp" name="whatsapp">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Preferences -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fas fa-briefcase"></i> Job Preferences</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="standardJobTitles">Desired Job Titles <span class="required">*</span></label>
+                                <input type="text" id="standardJobTitles" name="jobTitles" required placeholder="e.g., Marketing Manager, Digital Marketing Specialist">
+                                <small>Separate multiple titles with commas</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="standardLocations">Preferred Job Locations <span class="required">*</span></label>
+                                <input type="text" id="standardLocations" name="locations" required placeholder="e.g., Lagos, Abuja, Port Harcourt, Remote">
+                                <small>Separate multiple locations with commas</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="standardEducation">Education Level <span class="required">*</span></label>
+                                <select id="standardEducation" name="educationLevel" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="SSCE">SSCE/WAEC</option>
+                                    <option value="OND">Ordinary National Diploma (OND)</option>
+                                    <option value="HND">Higher National Diploma (HND)</option>
+                                    <option value="Bachelor">Bachelor's Degree</option>
+                                    <option value="Master">Master's Degree</option>
+                                    <option value="PhD">PhD/Doctorate</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="standardExperience">Experience Level <span class="required">*</span></label>
+                                <select id="standardExperience" name="experienceLevel" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="Entry Level">Entry Level (0-2 years)</option>
+                                    <option value="Mid Level">Mid Level (3-5 years)</option>
+                                    <option value="Senior Level">Senior Level (6-10 years)</option>
+                                    <option value="Executive">Executive (10+ years)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Employment Type <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Full-time" required> Full-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Part-time"> Part-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Contract"> Contract
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Remote"> Remote
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Hybrid"> Hybrid
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Registration - <span id="standardTotalAmount">₦10,000</span>
+                        </button>
+                        <button type="button" class="btn-secondary btn-change-package">
+                            <i class="fas fa-exchange-alt"></i> Change Package
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Premium Package Form -->
+                <form id="premiumForm" class="registration-form" action="https://formspree.io/f/xnjnqvkv" method="POST">
+                    <input type="hidden" name="package" value="Premium">
+                    <input type="hidden" name="package_price" value="20000">
+                    <input type="hidden" name="package_code" value="APPGU-PREMIUM">
+                    
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="premiumFullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="premiumFullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="premiumEmail">Email Address <span class="required">*</span></label>
+                                <input type="email" id="premiumEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="premiumPhone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="premiumPhone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="premiumWhatsapp">WhatsApp Number <span class="required">*</span></label>
+                                <input type="tel" id="premiumWhatsapp" name="whatsapp" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Preferences -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fas fa-briefcase"></i> Job Preferences</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="premiumJobTitles">Desired Job Titles <span class="required">*</span></label>
+                                <input type="text" id="premiumJobTitles" name="jobTitles" required placeholder="e.g., Marketing Manager, Digital Marketing Specialist">
+                                <small>Separate multiple titles with commas</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="premiumLocations">Preferred Job Locations <span class="required">*</span></label>
+                                <input type="text" id="premiumLocations" name="locations" required placeholder="e.g., Lagos, Remote, International, Hybrid">
+                                <small>Include "Remote" for remote positions</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="premiumEducation">Education Level <span class="required">*</span></label>
+                                <select id="premiumEducation" name="educationLevel" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="SSCE">SSCE/WAEC</option>
+                                    <option value="OND">Ordinary National Diploma (OND)</option>
+                                    <option value="HND">Higher National Diploma (HND)</option>
+                                    <option value="Bachelor">Bachelor's Degree</option>
+                                    <option value="Master">Master's Degree</option>
+                                    <option value="PhD">PhD/Doctorate</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="premiumExperience">Experience Level <span class="required">*</span></label>
+                                <select id="premiumExperience" name="experienceLevel" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="Entry Level">Entry Level (0-2 years)</option>
+                                    <option value="Mid Level">Mid Level (3-5 years)</option>
+                                    <option value="Senior Level">Senior Level (6-10 years)</option>
+                                    <option value="Executive">Executive (10+ years)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Employment Type <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Full-time" required> Full-time
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Remote"> Remote (Premium Feature)
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="Hybrid"> Hybrid
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="employmentType" value="International"> International/Remote Abroad
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Registration - <span id="premiumTotalAmount">₦20,000</span>
+                        </button>
+                        <button type="button" class="btn-secondary btn-change-package">
+                            <i class="fas fa-exchange-alt"></i> Change Package
+                        </button>
+                    </div>
+                </form>
+
+                <!-- NEW: Remote Special Package Form -->
+                <form id="remoteForm" class="registration-form" action="https://formspree.io/f/xnjnqvkv" method="POST">
+                    <input type="hidden" name="package" value="Remote Special">
+                    <input type="hidden" name="package_price" value="30000">
+                    <input type="hidden" name="package_code" value="APPGU-REMOTE">
+                    
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="remoteFullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="remoteFullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="remoteEmail">Email Address <span class="required">*</span></label>
+                                <input type="email" id="remoteEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="remotePhone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="remotePhone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="remoteWhatsapp">WhatsApp Number <span class="required">*</span></label>
+                                <input type="tel" id="remoteWhatsapp" name="whatsapp" required>
+                                <small>Required for remote job coordination</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Preferences -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fas fa-laptop-house"></i> Remote Job Preferences</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="remoteJobTitles">Desired Remote Job Titles <span class="required">*</span></label>
+                                <input type="text" id="remoteJobTitles" name="jobTitles" required placeholder="e.g., Remote Marketing Manager, Digital Marketing Specialist">
+                                <small>Separate multiple titles with commas</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="remoteTimezones">Preferred Timezone Compatibility</label>
+                                <select id="remoteTimezones" name="timezone">
+                                    <option value="">-- Select Timezone --</option>
+                                    <option value="WAT">West Africa Time (WAT)</option>
+                                    <option value="GMT">GMT/UTC</option>
+                                    <option value="EST">Eastern Standard Time (EST)</option>
+                                    <option value="PST">Pacific Standard Time (PST)</option>
+                                    <option value="Flexible">Flexible (Any Timezone)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="remoteEducation">Education Level <span class="required">*</span></label>
+                                <select id="remoteEducation" name="educationLevel" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="SSCE">SSCE/WAEC</option>
+                                    <option value="OND">Ordinary National Diploma (OND)</option>
+                                    <option value="HND">Higher National Diploma (HND)</option>
+                                    <option value="Bachelor">Bachelor's Degree</option>
+                                    <option value="Master">Master's Degree</option>
+                                    <option value="PhD">PhD/Doctorate</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="remoteExperience">Experience Level <span class="required">*</span></label>
+                                <select id="remoteExperience" name="experienceLevel" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="Entry Level">Entry Level (0-2 years)</option>
+                                    <option value="Mid Level">Mid Level (3-5 years)</option>
+                                    <option value="Senior Level">Senior Level (6-10 years)</option>
+                                    <option value="Executive">Executive (10+ years)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Remote Work Requirements <span class="required">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="remoteRequirements" value="Full-time Remote" required> Full-time Remote
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="remoteRequirements" value="Part-time Remote"> Part-time Remote
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="remoteRequirements" value="Contract Remote"> Contract Remote
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="remoteRequirements" value="International Remote"> International Remote
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="remoteRequirements" value="Flexible Hours"> Flexible Hours
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="remoteTechSetup">Remote Work Setup</label>
+                            <textarea id="remoteTechSetup" name="techSetup" placeholder="Describe your remote work setup (computer, internet, software skills, etc.)"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Registration - <span id="remoteTotalAmount">₦30,000</span>
+                        </button>
+                        <button type="button" class="btn-secondary btn-change-package">
+                            <i class="fas fa-exchange-alt"></i> Change Package
+                        </button>
+                    </div>
+                </form>
+
+                <!-- NEW: Combined Package Forms (Basic+Remote, Standard+Remote, Premium+Remote) -->
+                <!-- These use the same forms as base packages but with different pricing -->
+                <!-- The JavaScript will handle the price updates for these combined packages -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const packageSelect = document.getElementById('packageSelect');
+            const packageInfo = document.getElementById('packageInfo');
+            const packageSelectionDiv = document.querySelector('.package-selection');
+            const registrationFormsDiv = document.getElementById('registrationForms');
+            const successMessage = document.getElementById('successMessage');
+            const continueToPayment = document.getElementById('continueToPayment');
+            const totalAmountDisplay = document.getElementById('totalAmountDisplay');
+            const totalAmountSpan = document.getElementById('totalAmount');
+            const amountBreakdown = document.getElementById('amountBreakdown');
+            const additionalServices = document.querySelector('.additional-services');
+            const serviceCheckboxes = document.querySelectorAll('.service-checkbox');
+            const serviceLabels = document.querySelectorAll('.service-checkbox-label');
+            const whatsappConfirmation = document.getElementById('whatsappConfirmation');
+            const whatsappLink = document.getElementById('whatsappLink');
+            const paymentReference = document.getElementById('paymentReference');
+            const successTitle = document.getElementById('successTitle');
+
+            let selectedPackageData = null;
+            let selectedServices = [];
+            let currentOrderId = '';
+            let currentPackageType = '';
+
+            // Extended packages object with Remote Special Packages
+            const packages = {
+                basic: {
+                    title: 'Basic Package',
+                    price: '₦5,000',
+                    description: 'Perfect for entry-level job seekers',
+                    features: [
+                        '3 applications per week',
+                        'Basic job matching',
+                        'Email support',
+                        'Weekly application tracking',
+                        'Local job opportunities only'
+                    ],
+                    amount: 5000,
+                    formId: 'basicForm'
+                },
+                standard: {
+                    title: 'Standard Package',
+                    price: '₦10,000',
+                    description: 'Most Popular - Comprehensive support for serious job seekers',
+                    features: [
+                        '4 applications per week',
+                        'Advanced job matching algorithm',
+                        'Priority email & WhatsApp support',
+                        'Interview preparation guide',
+                        'Resume feedback session',
+                        'Hybrid work options included'
+                    ],
+                    amount: 10000,
+                    formId: 'standardForm'
+                },
+                premium: {
+                    title: 'Premium Package',
+                    price: '₦20,000',
+                    description: 'Complete career transformation with unlimited opportunities',
+                    features: [
+                        '5 applications per week',
+                        'Premium job matching with AI',
+                        '24/7 priority support',
+                        'Personal career consultant',
+                        'Interview coaching sessions',
+                        'Remote job applications included',
+                        'International opportunities',
+                        'LinkedIn optimization tips'
+                    ],
+                    amount: 20000,
+                    formId: 'premiumForm'
+                },
+                remote: {
+                    title: 'Remote Special Package',
+                    price: '₦30,000',
+                    description: 'Exclusive focus on remote job opportunities',
+                    features: [
+                        '4 remote job applications per week',
+                        'Remote-only job matching',
+                        'Priority support for remote roles',
+                        'Remote interview preparation',
+                        'Resume tailoring for remote positions',
+                        'Timezone compatibility matching',
+                        'Remote work setup guidance'
+                    ],
+                    amount: 30000,
+                    formId: 'remoteForm'
+                },
+                'basic+remote': {
+                    title: 'Basic + Remote Package',
+                    price: '₦35,000',
+                    description: 'Basic plan enhanced with remote job focus',
+                    features: [
+                        '3 regular applications per week',
+                        '4 remote job applications per week',
+                        'Total: 7 applications weekly',
+                        'Basic + remote job matching',
+                        'Email support',
+                        'Weekly tracking for all applications'
+                    ],
+                    amount: 35000,
+                    formId: 'basicForm'
+                },
+                'standard+remote': {
+                    title: 'Standard + Remote Package',
+                    price: '₦40,000',
+                    description: 'Standard plan enhanced with remote job focus',
+                    features: [
+                        '4 regular applications per week',
+                        '4 remote job applications per week',
+                        'Total: 8 applications weekly',
+                        'Advanced job matching',
+                        'Priority email & WhatsApp support',
+                        'Interview preparation guide',
+                        'Hybrid & remote options'
+                    ],
+                    amount: 40000,
+                    formId: 'standardForm'
+                },
+                'premium+remote': {
+                    title: 'Premium + Remote Package',
+                    price: '₦50,000',
+                    description: 'Premium plan with enhanced remote focus',
+                    features: [
+                        '5 regular applications per week',
+                        '4 additional remote applications weekly',
+                        'Total: 9 applications weekly',
+                        'Premium AI job matching',
+                        '24/7 priority support',
+                        'Personal career consultant',
+                        'Remote interview coaching',
+                        'International remote opportunities'
+                    ],
+                    amount: 50000,
+                    formId: 'premiumForm'
+                }
+            };
+
+            // Service prices mapping
+            const servicePrices = {
+                'LinkedIn': 10000,
+                'CV': 7000,
+                'Bundle': 15000
+            };
+
+            // Initialize service checkbox functionality
+            serviceLabels.forEach(label => {
+                const checkbox = label.querySelector('.service-checkbox');
+                
+                label.addEventListener('click', function(e) {
+                    if (e.target === checkbox) return;
+                    
+                    checkbox.checked = !checkbox.checked;
+                    updateServiceSelection();
+                });
+                
+                checkbox.addEventListener('change', updateServiceSelection);
+            });
+
+            // Package selection handler
+            packageSelect.addEventListener('change', function() {
+                const selectedPackage = this.value;
+                
+                hideAllForms();
+                successMessage.style.display = 'none';
+                
+                if (selectedPackage) {
+                    currentPackageType = selectedPackage;
+                    showPackageInfo(selectedPackage);
+                    showSelectedForm(selectedPackage);
+                    updateTotalAmount();
+                } else {
+                    packageInfo.style.display = 'none';
+                    totalAmountDisplay.style.display = 'none';
+                }
+            });
+
+            // Change package button handler
+            document.querySelectorAll('.btn-change-package').forEach(button => {
+                button.addEventListener('click', function() {
+                    resetRegistrationView();
+                });
+            });
+
+            // Update service selection
+            function updateServiceSelection() {
+                selectedServices = [];
+                
+                serviceLabels.forEach(label => {
+                    const checkbox = label.querySelector('.service-checkbox');
+                    const service = label.getAttribute('data-service');
+                    
+                    if (checkbox.checked) {
+                        selectedServices.push(service);
+                        label.classList.add('checked');
+                    } else {
+                        label.classList.remove('checked');
+                    }
+                });
+                
+                // Handle Bundle exclusivity (if Bundle is selected, deselect LinkedIn and CV)
+                if (selectedServices.includes('Bundle')) {
+                    serviceLabels.forEach(label => {
+                        const service = label.getAttribute('data-service');
+                        const checkbox = label.querySelector('.service-checkbox');
+                        
+                        if (service === 'LinkedIn' || service === 'CV') {
+                            checkbox.checked = false;
+                            label.classList.remove('checked');
+                        }
+                    });
+                    
+                    // Remove LinkedIn and CV from selectedServices
+                    selectedServices = selectedServices.filter(service => 
+                        service !== 'LinkedIn' && service !== 'CV'
+                    );
+                    selectedServices.push('Bundle');
+                }
+                
+                // If LinkedIn or CV is selected, deselect Bundle
+                if (selectedServices.includes('LinkedIn') || selectedServices.includes('CV')) {
+                    const bundleIndex = selectedServices.indexOf('Bundle');
+                    if (bundleIndex > -1) {
+                        selectedServices.splice(bundleIndex, 1);
+                        
+                        // Find and uncheck Bundle checkbox
+                        serviceLabels.forEach(label => {
+                            if (label.getAttribute('data-service') === 'Bundle') {
+                                const checkbox = label.querySelector('.service-checkbox');
+                                checkbox.checked = false;
+                                label.classList.remove('checked');
+                            }
+                        });
+                    }
+                }
+                
+                updateTotalAmount();
+            }
+
+            // Update total amount display
+            function updateTotalAmount() {
+                if (!currentPackageType) return;
+                
+                const packageAmount = packages[currentPackageType].amount;
+                let servicesAmount = 0;
+                
+                selectedServices.forEach(service => {
+                    servicesAmount += servicePrices[service] || 0;
+                });
+                
+                const totalAmount = packageAmount + servicesAmount;
+                
+                // Update display
+                totalAmountSpan.textContent = `₦${totalAmount.toLocaleString()}`;
+                totalAmountDisplay.style.display = 'block';
+                
+                // Update breakdown
+                let breakdownHTML = '';
+                breakdownHTML += `<div class="amount-item">
+                    <span>${packages[currentPackageType].title}:</span>
+                    <span>₦${packageAmount.toLocaleString()}</span>
+                </div>`;
+                
+                selectedServices.forEach(service => {
+                    const price = servicePrices[service];
+                    breakdownHTML += `<div class="amount-item">
+                        <span>${service} Service:</span>
+                        <span>₦${price.toLocaleString()}</span>
+                    </div>`;
+                });
+                
+                breakdownHTML += `<div class="amount-item">
+                    <span>Total:</span>
+                    <span>₦${totalAmount.toLocaleString()}</span>
+                </div>`;
+                
+                amountBreakdown.innerHTML = breakdownHTML;
+                amountBreakdown.style.display = selectedServices.length > 0 ? 'block' : 'none';
+                
+                // Update submit button text for current form
+                updateSubmitButtonText(totalAmount);
+            }
+
+            // Update submit button text
+            function updateSubmitButtonText(totalAmount) {
+                if (!currentPackageType) return;
+                
+                const formId = packages[currentPackageType].formId;
+                const form = document.getElementById(formId);
+                if (!form) return;
+                
+                const submitButton = form.querySelector('.btn-primary');
+                const amountSpan = submitButton.querySelector('span');
+                
+                if (amountSpan) {
+                    amountSpan.textContent = `₦${totalAmount.toLocaleString()}`;
+                }
+            }
+
+            // Form submission handler
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const packageType = currentPackageType;
+                    selectedPackageData = packages[packageType];
+                    
+                    // Get user data from form
+                    const userName = this.querySelector('[name="fullName"]').value;
+                    const userEmail = this.querySelector('[name="email"]').value;
+                    const userPhone = this.querySelector('[name="phone"]').value;
+                    const userWhatsapp = this.querySelector('[name="whatsapp"]')?.value || userPhone;
+                    
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    submitButton.disabled = true;
+                    
+                    try {
+                        // Calculate total amount
+                        const packageAmount = selectedPackageData.amount;
+                        let servicesAmount = 0;
+                        selectedServices.forEach(service => {
+                            servicesAmount += servicePrices[service] || 0;
+                        });
+                        const totalAmount = packageAmount + servicesAmount;
+                        
+                        // Generate order ID
+                        currentOrderId = generateOrderId(packageType, selectedServices);
+                        paymentReference.textContent = currentOrderId;
+                        
+                        // Prepare form data with additional services
+                        const formData = new FormData(this);
+                        formData.append('total_amount', totalAmount);
+                        formData.append('additional_services', selectedServices.join(', '));
+                        formData.append('order_id', currentOrderId);
+                        
+                        // Submit to Formspree
+                        const response = await fetch(this.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        });
+                        
+                        if (response.ok) {
+                            // Save order data
+                            const orderData = {
+                                orderId: currentOrderId,
+                                package: packageType,
+                                packageName: selectedPackageData.title,
+                                amount: totalAmount,
+                                baseAmount: packageAmount,
+                                additionalServices: selectedServices,
+                                servicesAmount: servicesAmount,
+                                customer: {
+                                    name: userName,
+                                    email: userEmail,
+                                    phone: userPhone,
+                                    whatsapp: userWhatsapp
+                                },
+                                date: new Date().toISOString(),
+                                status: 'pending'
+                            };
+                            
+                            // Save to localStorage
+                            localStorage.setItem('currentOrder', JSON.stringify(orderData));
+                            
+                            // Add to orders list
+                            let orders = JSON.parse(localStorage.getItem('appliguru_orders') || '[]');
+                            orders.push(orderData);
+                            localStorage.setItem('appliguru_orders', JSON.stringify(orders));
+                            
+                            // Update success message
+                            successTitle.innerHTML = `Registration Submitted! <br><small>Order ID: ${currentOrderId}</small>`;
+                            
+                            // Generate WhatsApp message
+                            generateWhatsAppMessage(orderData, userName, userWhatsapp);
+                            
+                            // Hide everything and show success
+                            packageSelectionDiv.style.display = 'none';
+                            registrationFormsDiv.style.display = 'none';
+                            packageInfo.style.display = 'none';
+                            additionalServices.style.display = 'none';
+                            totalAmountDisplay.style.display = 'none';
+                            
+                            // Show success message
+                            successMessage.style.display = 'block';
+                            successMessage.scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Reset the form
+                            this.reset();
+                            resetServices();
+                        } else {
+                            alert('Error submitting form. Please try again.');
+                        }
+                    } catch (error) {
+                        alert('Network error. Please try again.');
+                    } finally {
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }
+                });
+            });
+
+            // Generate WhatsApp message
+            function generateWhatsAppMessage(orderData, userName, whatsappNumber) {
+                const message = `Hello Appliguru!
+
+I just completed registration and payment for:
+Order ID: ${orderData.orderId}
+Name: ${userName}
+Package: ${orderData.packageName}
+Total Amount: ₦${orderData.amount.toLocaleString()}
+
+${orderData.additionalServices.length > 0 ? 
+`Additional Services: ${orderData.additionalServices.join(', ')}
+Services Amount: ₦${orderData.servicesAmount.toLocaleString()}\n` : ''}
+
+Please confirm my payment and activate my services.
+
+Thank you!`;
+
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/2348130654576?text=${encodedMessage}`;
+                
+                whatsappLink.href = whatsappUrl;
+                whatsappConfirmation.style.display = 'block';
+            }
+
+            // Generate order ID
+            function generateOrderId(packageType, services) {
+                const prefix = {
+                    'basic': 'B',
+                    'standard': 'S', 
+                    'premium': 'P',
+                    'remote': 'R',
+                    'basic+remote': 'BR',
+                    'standard+remote': 'SR',
+                    'premium+remote': 'PR'
+                }[packageType] || 'B';
+                
+                const servicesCode = services.length > 0 ? '-' + services.map(s => s.charAt(0)).join('') : '';
+                const timestamp = Date.now().toString().slice(-4);
+                
+                return `APPGU-${prefix}${servicesCode}-${timestamp}`;
+            }
+
+            // Show package info
+            function showPackageInfo(packageType) {
+                const pkg = packages[packageType];
+                if (!pkg) return;
+                
+                document.getElementById('packageTitle').textContent = pkg.title;
+                document.getElementById('packagePriceDisplay').textContent = pkg.price;
+                document.getElementById('packageDescription').textContent = pkg.description;
+                
+                let featuresHTML = '<ul>';
+                pkg.features.forEach(feature => {
+                    featuresHTML += `<li><i class="fas fa-check"></i> ${feature}</li>`;
+                });
+                featuresHTML += '</ul>';
+                document.getElementById('packageFeatures').innerHTML = featuresHTML;
+                
+                // Set card color based on package type
+                packageInfo.className = 'package-info ' + 
+                    (packageType.includes('remote') ? 
+                        (packageType.includes('+') ? 'remote-addon-card' : 'remote-card') : 
+                        packageType + '-card');
+                
+                packageInfo.style.display = 'block';
+            }
+
+            // Show selected form
+            function showSelectedForm(packageType) {
+                hideAllForms();
+                const formId = packages[packageType].formId;
+                if (formId) {
+                    document.getElementById(formId).style.display = 'block';
+                }
+            }
+
+            // Hide all forms
+            function hideAllForms() {
+                document.getElementById('basicForm').style.display = 'none';
+                document.getElementById('standardForm').style.display = 'none';
+                document.getElementById('premiumForm').style.display = 'none';
+                document.getElementById('remoteForm').style.display = 'none';
+            }
+
+            // Reset services
+            function resetServices() {
+                selectedServices = [];
+                serviceCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                serviceLabels.forEach(label => {
+                    label.classList.remove('checked');
+                });
+            }
+
+            // Reset registration view
+            function resetRegistrationView() {
+                hideAllForms();
+                packageInfo.style.display = 'none';
+                successMessage.style.display = 'none';
+                packageSelectionDiv.style.display = 'block';
+                registrationFormsDiv.style.display = 'block';
+                additionalServices.style.display = 'block';
+                packageSelect.value = '';
+                packageSelect.focus();
+                resetServices();
+                totalAmountDisplay.style.display = 'none';
+                currentPackageType = '';
+            }
+        });
+    </script>
+</body>
+</html>
