@@ -1075,229 +1075,229 @@
     </div>
 
     <script src="Js/main.js"></script>
-    <script src="Js/policy.js"></script>
+<script src="Js/policy.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const packageSelect = document.getElementById('packageSelect');
-            const packageInfo = document.getElementById('packageInfo');
-            const packageSelectionDiv = document.getElementById('packageSelection');
-            const registrationFormsDiv = document.getElementById('registrationForms');
-            const successMessage = document.getElementById('successMessage');
-            const continueToPayment = document.getElementById('continueToPayment');
-            const paymentReference = document.getElementById('paymentReference');
-            const successTitle = document.getElementById('successTitle');
-            const whatsappLink = document.getElementById('whatsappLink');
-            const whatsappConfirmation = document.getElementById('whatsappConfirmation');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const packageSelect = document.getElementById('packageSelect');
+        const packageInfo = document.getElementById('packageInfo');
+        const packageSelectionDiv = document.getElementById('packageSelection');
+        const registrationFormsDiv = document.getElementById('registrationForms');
+        const successMessage = document.getElementById('successMessage');
+        const continueToPayment = document.getElementById('continueToPayment');
+        const paymentReference = document.getElementById('paymentReference');
+        const successTitle = document.getElementById('successTitle');
+        const whatsappLink = document.getElementById('whatsappLink');
+        const whatsappConfirmation = document.getElementById('whatsappConfirmation');
+        
+        // NEW: Service Payment Elements
+        const servicePaymentSection = document.getElementById('servicePaymentSection');
+        const servicePaymentTitle = document.getElementById('servicePaymentTitle');
+        const servicePaymentAmount = document.getElementById('servicePaymentAmount');
+        const servicePaymentDescription = document.getElementById('servicePaymentDescription');
+        const servicePaymentBtnAmount = document.getElementById('servicePaymentBtnAmount');
+        const serviceProceedPayment = document.getElementById('serviceProceedPayment');
+        const backToPackages = document.getElementById('backToPackages');
+        const serviceFullName = document.getElementById('serviceFullName');
+        const serviceEmail = document.getElementById('serviceEmail');
+        const servicePhone = document.getElementById('servicePhone');
+        const serviceWhatsapp = document.getElementById('serviceWhatsapp');
+        const servicePolicyAgreement = document.getElementById('servicePolicyAgreement');
+        
+        let selectedPackageData = null;
+        let selectedServiceData = null;
+        let currentOrderId = '';
+
+        // Service details for direct payments
+        const serviceDetails = {
+            'linkedin': {
+                name: 'LinkedIn Optimization',
+                amount: 10000,
+                description: 'Professional LinkedIn profile optimization to maximize recruiter visibility'
+            },
+            'cv': {
+                name: 'CV Writing Service',
+                amount: 7000,
+                description: 'Professional CV crafted to showcase your unique value'
+            },
+            'both': {
+                name: 'LinkedIn + CV Bundle',
+                amount: 15000,
+                description: 'LinkedIn Optimization and CV Writing together - Save ₦2,000!'
+            }
+        };
+
+        // Extended packages object with Remote Special
+        const packages = {
+            basic: {
+                title: 'Basic Package',
+                price: '₦5,000',
+                description: 'Perfect for entry-level job seekers',
+                features: [
+                    '3 applications per week',
+                    'Basic job matching',
+                    'Email support',
+                    '2 Weeks application tracking',
+                    'Local job opportunities only'
+                ],
+                amount: 5000
+            },
+            standard: {
+                title: 'Standard Package',
+                price: '₦10,000',
+                description: 'Most Popular - Comprehensive support for serious job seekers',
+                features: [
+                    '4 applications per week',
+                    'Advanced job matching algorithm',
+                    '3 Weeks application tracking',
+                    'Priority email & WhatsApp support',
+                    'Interview assistant tips'
+                ],
+                amount: 10000
+            },
+            premium: {
+                title: 'Premium Package',
+                price: '₦20,000',
+                description: 'Complete career transformation with unlimited opportunities',
+                features: [
+                    '20 Job applications a month',
+                    'Premium job matching with AI',
+                    '24/7 priority support',
+                    'Personal career consultant',
+                    'Top-notch Interview assistant tip',
+                    'Remote job applications included'
+                ],
+                amount: 20000
+            },
+            remote: {
+                title: 'Remote Special Package',
+                price: '₦30,000',
+                description: 'Exclusive focus on remote job opportunities',
+                features: [
+                    '4 remote job applications per week',
+                    'Remote-only job matching',
+                    'Priority support for remote roles',
+                    'Remote interview preparation',
+                    'Timezone compatibility matching',
+                    'Remote work setup guidance'
+                ],
+                amount: 30000
+            }
+        };
+
+        // Check URL hash for service payments
+        function checkUrlHash() {
+            const hash = window.location.hash.substring(1); // Remove the # symbol
             
-            // NEW: Service Payment Elements
-            const servicePaymentSection = document.getElementById('servicePaymentSection');
-            const servicePaymentTitle = document.getElementById('servicePaymentTitle');
-            const servicePaymentAmount = document.getElementById('servicePaymentAmount');
-            const servicePaymentDescription = document.getElementById('servicePaymentDescription');
-            const servicePaymentBtnAmount = document.getElementById('servicePaymentBtnAmount');
-            const serviceProceedPayment = document.getElementById('serviceProceedPayment');
-            const backToPackages = document.getElementById('backToPackages');
-            const serviceFullName = document.getElementById('serviceFullName');
-            const serviceEmail = document.getElementById('serviceEmail');
-            const servicePhone = document.getElementById('servicePhone');
-            const serviceWhatsapp = document.getElementById('serviceWhatsapp');
-            const servicePolicyAgreement = document.getElementById('servicePolicyAgreement');
+            if (serviceDetails[hash]) {
+                // Show service payment section
+                selectedServiceData = serviceDetails[hash];
+                showServicePayment(selectedServiceData);
+                
+                // Hide package selection and forms
+                packageSelectionDiv.style.display = 'none';
+                registrationFormsDiv.style.display = 'none';
+                packageInfo.style.display = 'none';
+                successMessage.style.display = 'none';
+                
+                // Show service payment section
+                servicePaymentSection.style.display = 'block';
+                
+                // Scroll to service payment section
+                setTimeout(() => {
+                    servicePaymentSection.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        }
+
+        // Show service payment section
+        function showServicePayment(service) {
+            servicePaymentTitle.textContent = service.name;
+            servicePaymentAmount.textContent = `₦${service.amount.toLocaleString()}`;
+            servicePaymentBtnAmount.textContent = `₦${service.amount.toLocaleString()}`;
+            servicePaymentDescription.textContent = service.description;
+        }
+
+        // Handle service payment submission
+        serviceProceedPayment.addEventListener('click', function() {
+            if (!servicePolicyAgreement.checked) {
+                alert('Please agree to the service policy before proceeding.');
+                return;
+            }
             
-            let selectedPackageData = null;
-            let selectedServiceData = null;
-            let currentOrderId = '';
-
-            // Service details for direct payments
-            const serviceDetails = {
-                'linkedin': {
-                    name: 'LinkedIn Optimization',
-                    amount: 10000,
-                    description: 'Professional LinkedIn profile optimization to maximize recruiter visibility'
+            if (!serviceFullName.value || !serviceEmail.value || !servicePhone.value) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Generate order ID for service
+            const orderId = generateServiceOrderId(selectedServiceData.name);
+            paymentReference.textContent = orderId;
+            
+            // Save order data
+            const orderData = {
+                orderId: orderId,
+                service: selectedServiceData.name,
+                amount: selectedServiceData.amount,
+                customer: {
+                    name: serviceFullName.value,
+                    email: serviceEmail.value,
+                    phone: servicePhone.value,
+                    whatsapp: serviceWhatsapp.value || servicePhone.value
                 },
-                'cv': {
-                    name: 'CV Writing Service',
-                    amount: 7000,
-                    description: 'Professional CV crafted to showcase your unique value'
-                },
-                'both': {
-                    name: 'LinkedIn + CV Bundle',
-                    amount: 15000,
-                    description: 'LinkedIn Optimization and CV Writing together - Save ₦2,000!'
-                }
+                date: new Date().toISOString(),
+                status: 'pending'
             };
-
-            // Extended packages object with Remote Special
-            const packages = {
-                basic: {
-                    title: 'Basic Package',
-                    price: '₦5,000',
-                    description: 'Perfect for entry-level job seekers',
-                    features: [
-                        '3 applications per week',
-                        'Basic job matching',
-                        'Email support',
-                        '2 Weeks application tracking',
-                        'Local job opportunities only'
-                    ],
-                    amount: 5000
-                },
-                standard: {
-                    title: 'Standard Package',
-                    price: '₦10,000',
-                    description: 'Most Popular - Comprehensive support for serious job seekers',
-                    features: [
-                        '4 applications per week',
-                        'Advanced job matching algorithm',
-                        '3 Weeks application tracking',
-                        'Priority email & WhatsApp support',
-                        'Interview assistant tips'
-                    ],
-                    amount: 10000
-                },
-                premium: {
-                    title: 'Premium Package',
-                    price: '₦20,000',
-                    description: 'Complete career transformation with unlimited opportunities',
-                    features: [
-                        '20 Job applications a month',
-                        'Premium job matching with AI',
-                        '24/7 priority support',
-                        'Personal career consultant',
-                        'Top-notch Interview assistant tip',
-                        'Remote job applications included'
-                    ],
-                    amount: 20000
-                },
-                remote: {
-                    title: 'Remote Special Package',
-                    price: '₦30,000',
-                    description: 'Exclusive focus on remote job opportunities',
-                    features: [
-                        '4 remote job applications per week',
-                        'Remote-only job matching',
-                        'Priority support for remote roles',
-                        'Remote interview preparation',
-                        'Timezone compatibility matching',
-                        'Remote work setup guidance'
-                    ],
-                    amount: 30000
-                }
-            };
-
-            // Check URL hash for service payments
-            function checkUrlHash() {
-                const hash = window.location.hash.substring(1); // Remove the # symbol
-                
-                if (serviceDetails[hash]) {
-                    // Show service payment section
-                    selectedServiceData = serviceDetails[hash];
-                    showServicePayment(selectedServiceData);
-                    
-                    // Hide package selection and forms
-                    packageSelectionDiv.style.display = 'none';
-                    registrationFormsDiv.style.display = 'none';
-                    packageInfo.style.display = 'none';
-                    successMessage.style.display = 'none';
-                    
-                    // Show service payment section
-                    servicePaymentSection.style.display = 'block';
-                    
-                    // Scroll to service payment section
-                    setTimeout(() => {
-                        servicePaymentSection.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                }
-            }
-
-            // Show service payment section
-            function showServicePayment(service) {
-                servicePaymentTitle.textContent = service.name;
-                servicePaymentAmount.textContent = `₦${service.amount.toLocaleString()}`;
-                servicePaymentBtnAmount.textContent = `₦${service.amount.toLocaleString()}`;
-                servicePaymentDescription.textContent = service.description;
-            }
-
-            // Handle service payment submission
-            serviceProceedPayment.addEventListener('click', function() {
-                if (!servicePolicyAgreement.checked) {
-                    alert('Please agree to the service policy before proceeding.');
-                    return;
-                }
-                
-                if (!serviceFullName.value || !serviceEmail.value || !servicePhone.value) {
-                    alert('Please fill in all required fields.');
-                    return;
-                }
-                
-                // Generate order ID for service
-                const orderId = generateServiceOrderId(selectedServiceData.name);
-                paymentReference.textContent = orderId;
-                
-                // Save order data
-                const orderData = {
-                    orderId: orderId,
-                    service: selectedServiceData.name,
-                    amount: selectedServiceData.amount,
-                    customer: {
-                        name: serviceFullName.value,
-                        email: serviceEmail.value,
-                        phone: servicePhone.value,
-                        whatsapp: serviceWhatsapp.value || servicePhone.value
-                    },
-                    date: new Date().toISOString(),
-                    status: 'pending'
-                };
-                
-                // Save to localStorage
-                localStorage.setItem('currentOrder', JSON.stringify(orderData));
-                
-                // Add to orders list
-                let orders = JSON.parse(localStorage.getItem('appliguru_orders') || '[]');
-                orders.push(orderData);
-                localStorage.setItem('appliguru_orders', JSON.stringify(orders));
-                
-                // Generate WhatsApp message
-                generateWhatsAppMessage(orderData);
-                
-                // Hide service payment and show success
-                servicePaymentSection.style.display = 'none';
-                successTitle.innerHTML = `Service Order Created! <br><small>Order ID: ${orderId}</small>`;
-                successMessage.style.display = 'block';
-                successMessage.scrollIntoView({ behavior: 'smooth' });
-                
-                // Reset form
-                serviceFullName.value = '';
-                serviceEmail.value = '';
-                servicePhone.value = '';
-                serviceWhatsapp.value = '';
-                servicePolicyAgreement.checked = false;
-            });
-
-            // Back to packages button
-            backToPackages.addEventListener('click', function() {
-                servicePaymentSection.style.display = 'none';
-                packageSelectionDiv.style.display = 'block';
-                registrationFormsDiv.style.display = 'block';
-                window.history.pushState('', document.title, window.location.pathname);
-            });
-
-            // Generate service order ID
-            function generateServiceOrderId(serviceName) {
-                const prefix = {
-                    'LinkedIn Optimization': 'LI',
-                    'CV Writing Service': 'CV',
-                    'LinkedIn + CV Bundle': 'BD'
-                }[serviceName] || 'SV';
-                
-                const timestamp = Date.now().toString().slice(-6);
-                return `APPGU-${prefix}${timestamp}`;
-            }
-
+            
+            // Save to localStorage
+            localStorage.setItem('currentOrder', JSON.stringify(orderData));
+            
+            // Add to orders list
+            let orders = JSON.parse(localStorage.getItem('appliguru_orders') || '[]');
+            orders.push(orderData);
+            localStorage.setItem('appliguru_orders', JSON.stringify(orders));
+            
             // Generate WhatsApp message
-            function generateWhatsAppMessage(orderData) {
-                const isService = orderData.service;
-                const message = `Hello Appliguru!
+            generateWhatsAppMessage(orderData);
+            
+            // Hide service payment and show success
+            servicePaymentSection.style.display = 'none';
+            successTitle.innerHTML = `Service Order Created! <br><small>Order ID: ${orderId}</small>`;
+            successMessage.style.display = 'block';
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+            
+            // Reset form
+            serviceFullName.value = '';
+            serviceEmail.value = '';
+            servicePhone.value = '';
+            serviceWhatsapp.value = '';
+            servicePolicyAgreement.checked = false;
+        });
+
+        // Back to packages button
+        backToPackages.addEventListener('click', function() {
+            servicePaymentSection.style.display = 'none';
+            packageSelectionDiv.style.display = 'block';
+            registrationFormsDiv.style.display = 'block';
+            window.history.pushState('', document.title, window.location.pathname);
+        });
+
+        // Generate service order ID
+        function generateServiceOrderId(serviceName) {
+            const prefix = {
+                'LinkedIn Optimization': 'LI',
+                'CV Writing Service': 'CV',
+                'LinkedIn + CV Bundle': 'BD'
+            }[serviceName] || 'SV';
+            
+            const timestamp = Date.now().toString().slice(-6);
+            return `APPGU-${prefix}${timestamp}`;
+        }
+
+        // Generate WhatsApp message
+        function generateWhatsAppMessage(orderData) {
+            const isService = orderData.service;
+            const message = `Hello Appliguru!
 
 I just ${isService ? 'purchased a service' : 'completed registration'}:
 ${isService ? `Service: ${orderData.service}` : `Package: ${orderData.packageName}`}
@@ -1309,167 +1309,275 @@ Please confirm my payment and ${isService ? 'activate my service' : 'begin my jo
 
 Thank you!`;
 
-                const encodedMessage = encodeURIComponent(message);
-                const whatsappUrl = `https://wa.me/2348130654576?text=${encodedMessage}`;
-                
-                whatsappLink.href = whatsappUrl;
-                whatsappConfirmation.style.display = 'block';
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/2348130654576?text=${encodedMessage}`;
+            
+            whatsappLink.href = whatsappUrl;
+            whatsappConfirmation.style.display = 'block';
+        }
+
+        // Original package selection functionality
+        packageSelect.addEventListener('change', function() {
+            const selectedPackage = this.value;
+            
+            hideAllForms();
+            successMessage.style.display = 'none';
+            
+            if (selectedPackage) {
+                showPackageInfo(selectedPackage);
+                showSelectedForm(selectedPackage);
+            } else {
+                packageInfo.style.display = 'none';
             }
+        });
 
-            // Original package selection functionality
-            packageSelect.addEventListener('change', function() {
-                const selectedPackage = this.value;
-                
-                hideAllForms();
-                successMessage.style.display = 'none';
-                
-                if (selectedPackage) {
-                    showPackageInfo(selectedPackage);
-                    showSelectedForm(selectedPackage);
-                } else {
-                    packageInfo.style.display = 'none';
-                }
-            });
-
-            // Continue to payment button
-            continueToPayment.addEventListener('click', function() {
-                if (!selectedPackageData) return;
-                
-                const orderData = JSON.parse(localStorage.getItem('currentOrder'));
-                if (!orderData) return;
-                
-                const paymentUrl = `payment-instructions.html?` +
-                    `package=${orderData.package}` +
-                    `&amount=${orderData.amount}` +
-                    `&name=${encodeURIComponent(orderData.customer.name)}` +
-                    `&email=${encodeURIComponent(orderData.customer.email)}` +
-                    `&phone=${encodeURIComponent(orderData.customer.phone)}` +
-                    `&order=${orderData.orderId}`;
-                
-                window.open(paymentUrl, '_blank');
-            });
-
-            // Form submission handlers
-            document.querySelectorAll('form').forEach(form => {
-                form.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    const packageType = this.querySelector('[name="package"]').value.toLowerCase();
-                    selectedPackageData = packages[packageType];
-                    
-                    const userName = this.querySelector('[name="fullName"]').value;
-                    const userEmail = this.querySelector('[name="email"]').value;
-                    const userPhone = this.querySelector('[name="phone"]').value;
-                    
-                    const submitButton = this.querySelector('button[type="submit"]');
-                    const originalText = submitButton.innerHTML;
-                    
-                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                    submitButton.disabled = true;
-                    
-                    try {
-                        const formData = new FormData(this);
-                        const response = await fetch(this.action, {
-                            method: 'POST',
-                            body: formData,
-                            headers: { 'Accept': 'application/json' }
-                        });
+        // FIXED: Continue to payment button
+        continueToPayment.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Payment button clicked');
+            
+            // Get order data from localStorage
+            const orderData = JSON.parse(localStorage.getItem('currentOrder'));
+            
+            if (!orderData) {
+                console.error('No order data found');
+                alert('No order found. Please complete the registration first.');
+                return;
+            }
+            
+            console.log('Order data:', orderData);
+            
+            // Create payment instructions page content
+            const paymentInstructions = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Payment Instructions - Appliguru</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f8f9fa; }
+                        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+                        h1 { color: #2d3748; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+                        .order-info { background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #4299e1; }
+                        .bank-details { background: #f0fff4; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #48bb78; }
+                        .whatsapp-btn { display: inline-block; background: #25D366; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+                        .whatsapp-btn:hover { background: #128C7E; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1>Payment Instructions</h1>
                         
-                        if (response.ok) {
-                            const orderId = generateOrderId(packageType);
-                            
-                            const orderData = {
-                                orderId: orderId,
-                                package: packageType,
-                                packageName: selectedPackageData.title,
-                                amount: selectedPackageData.amount,
-                                customer: {
-                                    name: userName,
-                                    email: userEmail,
-                                    phone: userPhone
-                                },
-                                date: new Date().toISOString(),
-                                status: 'pending'
-                            };
-                            
-                            localStorage.setItem('currentOrder', JSON.stringify(orderData));
-                            
-                            let orders = JSON.parse(localStorage.getItem('appliguru_orders') || '[]');
-                            orders.push(orderData);
-                            localStorage.setItem('appliguru_orders', JSON.stringify(orders));
-                            
-                            packageSelectionDiv.style.display = 'none';
-                            registrationFormsDiv.style.display = 'none';
-                            packageInfo.style.display = 'none';
-                            
-                            paymentReference.textContent = orderId;
-                            successTitle.innerHTML = `Registration Submitted! <br><small>Order ID: ${orderId}</small>`;
-                            
-                            generateWhatsAppMessage(orderData);
-                            
-                            successMessage.style.display = 'block';
-                            successMessage.scrollIntoView({ behavior: 'smooth' });
-                            
-                            this.reset();
-                        } else {
+                        <div class="order-info">
+                            <h2>Your Order Details</h2>
+                            <p><strong>Order ID:</strong> ${orderData.orderId}</p>
+                            <p><strong>${orderData.service ? 'Service' : 'Package'}:</strong> ${orderData.service || orderData.packageName}</p>
+                            <p><strong>Amount:</strong> ₦${orderData.amount.toLocaleString()}</p>
+                            <p><strong>Date:</strong> ${new Date(orderData.date).toLocaleDateString()}</p>
+                        </div>
+                        
+                        <div class="bank-details">
+                            <h2>Bank Transfer Details</h2>
+                            <p><strong>Bank Name:</strong> Opay</p>
+                            <p><strong>Account Number:</strong> 8130654576</p>
+                            <p><strong>Account Name:</strong> Tolulope Damilola Omopariola</p>
+                            <p><strong>Reference/Note:</strong> ${orderData.orderId}</p>
+                        </div>
+                        
+                        <div style="margin: 30px 0;">
+                            <h3>Payment Steps:</h3>
+                            <ol>
+                                <li>Transfer <strong>₦${orderData.amount.toLocaleString()}</strong> to the bank account above</li>
+                                <li>Use <strong>${orderData.orderId}</strong> as the transfer reference</li>
+                                <li>After payment, send WhatsApp confirmation using the button below</li>
+                                <li>We'll confirm your payment within 24 hours</li>
+                            </ol>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 30px;">
+                            <a href="https://wa.me/2348130654576?text=${encodeURIComponent(`Hello Appliguru! I just made payment for ${orderData.service || orderData.packageName}. Order ID: ${orderData.orderId}. Amount: ₦${orderData.amount.toLocaleString()}. Please confirm.`)}" 
+                               class="whatsapp-btn" target="_blank">
+                               <i class="fab fa-whatsapp"></i> Send WhatsApp Confirmation
+                            </a>
+                        </div>
+                        
+                        <p style="margin-top: 30px; color: #666; font-size: 14px;">
+                            <strong>Note:</strong> Please keep your transfer receipt for reference. If you have any questions, contact us via WhatsApp.
+                        </p>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            // Open payment instructions in new tab
+            const paymentWindow = window.open('', '_blank');
+            paymentWindow.document.write(paymentInstructions);
+            paymentWindow.document.close();
+        });
+
+        // FIXED: Form submission handlers - specifically for remote form
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // FIX: Get the correct package type
+                let packageType = '';
+                if (this.id === 'remoteForm') {
+                    packageType = 'remote';
+                } else if (this.id === 'basicForm') {
+                    packageType = 'basic';
+                } else if (this.id === 'standardForm') {
+                    packageType = 'standard';
+                } else if (this.id === 'premiumForm') {
+                    packageType = 'premium';
+                }
+                
+                selectedPackageData = packages[packageType];
+                
+                // FIX: For remote form, check if at least one remote requirement is checked
+                if (packageType === 'remote') {
+                    const remoteRequirements = this.querySelectorAll('input[name="remoteRequirements"]:checked');
+                    if (remoteRequirements.length === 0) {
+                        alert('Please select at least one Remote Work Requirement.');
+                        return;
+                    }
+                }
+                
+                const userName = this.querySelector('[name="fullName"]').value;
+                const userEmail = this.querySelector('[name="email"]').value;
+                const userPhone = this.querySelector('[name="phone"]').value;
+                
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitButton.disabled = true;
+                
+                try {
+                    const formData = new FormData(this);
+                    
+                    // Add debug logging
+                    console.log('Submitting form:', this.id);
+                    console.log('Package type:', packageType);
+                    console.log('Form action:', this.action);
+                    
+                    const response = await fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    console.log('Response status:', response.status);
+                    
+                    if (response.ok) {
+                        const orderId = generateOrderId(packageType);
+                        
+                        const orderData = {
+                            orderId: orderId,
+                            package: packageType,
+                            packageName: selectedPackageData.title,
+                            amount: selectedPackageData.amount,
+                            customer: {
+                                name: userName,
+                                email: userEmail,
+                                phone: userPhone
+                            },
+                            date: new Date().toISOString(),
+                            status: 'pending'
+                        };
+                        
+                        // Save order data
+                        localStorage.setItem('currentOrder', JSON.stringify(orderData));
+                        
+                        let orders = JSON.parse(localStorage.getItem('appliguru_orders') || '[]');
+                        orders.push(orderData);
+                        localStorage.setItem('appliguru_orders', JSON.stringify(orders));
+                        
+                        // Hide everything and show success
+                        packageSelectionDiv.style.display = 'none';
+                        registrationFormsDiv.style.display = 'none';
+                        packageInfo.style.display = 'none';
+                        
+                        paymentReference.textContent = orderId;
+                        successTitle.innerHTML = `Registration Submitted! <br><small>Order ID: ${orderId}</small>`;
+                        
+                        // Generate WhatsApp message
+                        generateWhatsAppMessage(orderData);
+                        
+                        successMessage.style.display = 'block';
+                        successMessage.scrollIntoView({ behavior: 'smooth' });
+                        
+                        this.reset();
+                    } else {
+                        // Try to get error details
+                        try {
+                            const errorData = await response.json();
+                            console.error('Formspree error:', errorData);
+                            alert(`Error submitting form: ${errorData.error || 'Please try again.'}`);
+                        } catch (jsonError) {
                             alert('Error submitting form. Please try again.');
                         }
-                    } catch (error) {
-                        alert('Network error. Please try again.');
-                    } finally {
-                        submitButton.innerHTML = originalText;
-                        submitButton.disabled = false;
                     }
-                });
+                } catch (error) {
+                    console.error('Network error:', error);
+                    alert('Network error. Please check your connection and try again.');
+                } finally {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }
             });
-
-            function generateOrderId(packageType) {
-                const prefix = {
-                    'basic': 'B',
-                    'standard': 'S', 
-                    'premium': 'P',
-                    'remote': 'R'
-                }[packageType] || 'B';
-                
-                const timestamp = Date.now().toString().slice(-6);
-                return `APPGU-${prefix}${timestamp}`;
-            }
-
-            function showPackageInfo(packageType) {
-                const pkg = packages[packageType];
-                document.getElementById('packageTitle').textContent = pkg.title;
-                document.getElementById('packagePriceDisplay').textContent = pkg.price;
-                document.getElementById('packageDescription').textContent = pkg.description;
-                
-                let featuresHTML = '<ul>';
-                pkg.features.forEach(feature => {
-                    featuresHTML += `<li><i class="fas fa-check"></i> ${feature}</li>`;
-                });
-                featuresHTML += '</ul>';
-                document.getElementById('packageFeatures').innerHTML = featuresHTML;
-                
-                packageInfo.className = 'package-info ' + packageType + '-card';
-                packageInfo.style.display = 'block';
-            }
-
-            function showSelectedForm(packageType) {
-                hideAllForms();
-                document.getElementById(packageType + 'Form').style.display = 'block';
-            }
-
-            function hideAllForms() {
-                document.getElementById('basicForm').style.display = 'none';
-                document.getElementById('standardForm').style.display = 'none';
-                document.getElementById('premiumForm').style.display = 'none';
-                document.getElementById('remoteForm').style.display = 'none';
-            }
-
-            // Initialize page
-            checkUrlHash();
-            
-            // Listen for hash changes
-            window.addEventListener('hashchange', checkUrlHash);
         });
-    </script>
+
+        function generateOrderId(packageType) {
+            const prefix = {
+                'basic': 'B',
+                'standard': 'S', 
+                'premium': 'P',
+                'remote': 'R'
+            }[packageType] || 'B';
+            
+            const timestamp = Date.now().toString().slice(-6);
+            return `APPGU-${prefix}${timestamp}`;
+        }
+
+        function showPackageInfo(packageType) {
+            const pkg = packages[packageType];
+            document.getElementById('packageTitle').textContent = pkg.title;
+            document.getElementById('packagePriceDisplay').textContent = pkg.price;
+            document.getElementById('packageDescription').textContent = pkg.description;
+            
+            let featuresHTML = '<ul>';
+            pkg.features.forEach(feature => {
+                featuresHTML += `<li><i class="fas fa-check"></i> ${feature}</li>`;
+            });
+            featuresHTML += '</ul>';
+            document.getElementById('packageFeatures').innerHTML = featuresHTML;
+            
+            packageInfo.className = 'package-info ' + packageType + '-card';
+            packageInfo.style.display = 'block';
+        }
+
+        function showSelectedForm(packageType) {
+            hideAllForms();
+            document.getElementById(packageType + 'Form').style.display = 'block';
+        }
+
+        function hideAllForms() {
+            document.getElementById('basicForm').style.display = 'none';
+            document.getElementById('standardForm').style.display = 'none';
+            document.getElementById('premiumForm').style.display = 'none';
+            document.getElementById('remoteForm').style.display = 'none';
+        }
+
+        // Initialize page
+        checkUrlHash();
+        
+        // Listen for hash changes
+        window.addEventListener('hashchange', checkUrlHash);
+    });
+</script>
 </body>
 </html>
